@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.test.test"
     },
@@ -22,11 +24,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.test.test"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["@viro-community/react-viro"]
+    "plugins": [
+      [
+        "@viro-community/react-viro",
+        {
+          "androidXRMode": "AR"
+        }
+      ]
+    ]
   }
 }
