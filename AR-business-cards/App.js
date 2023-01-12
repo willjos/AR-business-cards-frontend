@@ -8,12 +8,11 @@ import {
   ViroARSceneNavigator,
 } from "@viro-community/react-viro";
 import UserLoginPage from "./components/UserLoginPage";
-
+import QRGenerator from "./components/QRGenerator";
 export default () => {
   return (
     <View style={styles.container}>
-      <UserLoginPage />
-      <StatusBar style="auto" />
+      <QRGenerator code="0" />
     </View>
   );
 };
