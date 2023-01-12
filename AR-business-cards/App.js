@@ -12,7 +12,7 @@ import QRGenerator from "./components/QRGenerator";
 export default () => {
   return (
     <View style={styles.container}>
-      <QRGenerator code="0" />
+      <QRGenerator code="90" />
     </View>
   );
 };
