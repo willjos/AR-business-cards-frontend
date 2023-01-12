@@ -8,12 +8,16 @@ import {
   ViroARSceneNavigator,
 } from "@viro-community/react-viro";
 import UserLoginPage from "./components/UserLoginPage";
-import CreateEdit from "./components/CreateEdit";
+import HomePage from "./components/HomePage";
+
 export default () => {
   return (
-    <View style={styles.container}>
-      <CreateEdit />
-    </View>
+    // <View style={styles.container}>
+    //   {/* <UserLoginPage />
+    //   <StatusBar style="auto" /> */}
+    //   <HomePage />
+    // </View>
+    <HomePage />
   );
 };
 
