@@ -6,8 +6,7 @@ import {
   ViroTrackingStateConstants,
   ViroARSceneNavigator,
 } from "@viro-community/react-viro";
-import { StatusBar } from "expo-status-bar";
-import QRScanner from "./components/QRScanner";
+
 const HelloWorldSceneAR = () => {
   const [text, setText] = useState("Initializing AR...");
 
@@ -34,14 +33,13 @@ const HelloWorldSceneAR = () => {
 
 export default () => {
   return (
-    // <ViroARSceneNavigator
-    //   autofocus={true}
-    //   initialScene={{
-    //     scene: HelloWorldSceneAR,
-    //   }}
-    //   style={styles.f1}
-    // />
-    <QRScanner />
+    <ViroARSceneNavigator
+      autofocus={true}
+      initialScene={{
+        scene: HelloWorldSceneAR,
+      }}
+      style={styles.f1}
+    />
   );
 };
 
