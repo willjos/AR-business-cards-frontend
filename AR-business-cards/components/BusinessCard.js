@@ -14,9 +14,9 @@ export default function BusinessCardScene() {
   function onInitialized(state, reason) {
     console.log("Business Card", state, reason);
     if (state === ViroTrackingStateConstants.TRACKING_NORMAL) {
-      setText("Card Goes Here");
+      setBusinessName("Sigma Labs");
     } else if (state === ViroTrackingStateConstants.TRACKING_NONE) {
-      setText("Tracking Lost!");
+      setBusinessName("Tracking Lost!");
     }
   }
 
