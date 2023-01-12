@@ -8,7 +8,6 @@ import {
 } from "@viro-community/react-viro";
 
 export default function BusinessCardScene() {
-  const [text, setText] = useState("Initializing Business Card...");
   const [businessName, setBusinessName] = useState("Business Name");
   const [businessDetails, setBusinessDetails] = useState("Business Details");
 
@@ -28,9 +27,17 @@ export default function BusinessCardScene() {
         height={2}
         width={3}
         backgroundColor={"rgba(0,255,255,0.9)"}
+        style={styles.f1}
       >
         <ViroText
-          text={text}
+          text={businessName}
+          textClipMode="None"
+          scale={[0.5, 0.5, 0.5]}
+          textLineBreakMode="CharWrap"
+          style={styles.CardTextStyle}
+        />
+        <ViroText
+          text={businessDetails}
           textClipMode="None"
           scale={[0.5, 0.5, 0.5]}
           textLineBreakMode="CharWrap"
@@ -42,7 +49,7 @@ export default function BusinessCardScene() {
 }
 
 var styles = StyleSheet.create({
-  f1: { flex: 1 },
+  f1: { flex: 1, justifyContent: "space-evenly" },
   CardTextStyle: {
     fontFamily: "Arial",
     fontSize: 30,
