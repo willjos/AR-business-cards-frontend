@@ -8,6 +8,7 @@ export default function HomePage(props) {
   const [viewFeature, setViewFeature] = useState(false);
   const [viewCard, setViewCard] = useState(false);
   const [viewQR, setViewQR] = useState(false);
+  const [qrData, setQRData] = useState("QR Data");
 
   function handleViewCardPress() {
     setViewCard(true);
@@ -19,6 +20,10 @@ export default function HomePage(props) {
     setViewFeature(true);
   }
 
+  function handleQRData(data) {
+    setQRData(data);
+  }
+
   if (viewFeature) {
     if (viewCard) {
       return (
@@ -27,7 +32,7 @@ export default function HomePage(props) {
         </>
       );
     } else if (viewQR) {
-      return <QRScanner />;
+      return <QRScanner setQRData={handleQRData} />;
     }
   } else {
     return (

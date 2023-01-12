@@ -7,6 +7,7 @@ import {
   ViroFlexView,
 } from "@viro-community/react-viro";
 
+//COMPONENT NO LONGER NEEDED AS ALL THE CODE HAS BEEN MIGRATED TO 'ArCardView.js'
 export default function BusinessCardScene() {
   const [businessName, setBusinessName] = useState("Business Name");
   const [businessDetails, setBusinessDetails] = useState("Business Details");
