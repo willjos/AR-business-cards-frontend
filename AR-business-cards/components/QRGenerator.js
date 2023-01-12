@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     padding: 70,
-
     flexDirection: "row",
   },
   infoContainer: {
