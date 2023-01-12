@@ -20,4 +20,11 @@ export default () => {
 
 var styles = StyleSheet.create({
   f1: { flex: 1 },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+  },
 });
