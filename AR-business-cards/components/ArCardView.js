@@ -6,15 +6,15 @@ import {
   ViroTrackingStateConstants,
   ViroARSceneNavigator,
 } from "@viro-community/react-viro";
+import BusinessCardScene from "./BusinessCard";
 
 export default () => {
   return (
     <ViroARSceneNavigator
       autofocus={true}
       initialScene={{
-        scene: HelloWorldSceneAR,
+        scene: BusinessCardScene,
       }}
-      style={styles.f1}
     />
   );
 };
