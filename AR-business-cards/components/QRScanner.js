@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
   },
 
   barcodebox: {
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     height: 300,
