@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import {
   ViroARScene,
   ViroText,
   ViroTrackingStateConstants,
   ViroARSceneNavigator,
 } from "@viro-community/react-viro";
-
+import { StatusBar } from "expo-status-bar";
+import QRScanner from "./components/QRScanner";
 const HelloWorldSceneAR = () => {
   const [text, setText] = useState("Initializing AR...");
 
@@ -33,13 +34,14 @@ const HelloWorldSceneAR = () => {
 
 export default () => {
   return (
-    <ViroARSceneNavigator
-      autofocus={true}
-      initialScene={{
-        scene: HelloWorldSceneAR,
-      }}
-      style={styles.f1}
-    />
+    // <ViroARSceneNavigator
+    //   autofocus={true}
+    //   initialScene={{
+    //     scene: HelloWorldSceneAR,
+    //   }}
+    //   style={styles.f1}
+    // />
+    <QRScanner />
   );
 };
 
