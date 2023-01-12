@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import {
   ViroARScene,
   ViroText,
