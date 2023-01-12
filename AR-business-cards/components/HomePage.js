@@ -10,18 +10,16 @@ export default function HomePage() {
   }
 
   return (
-    <View>
-      <Text>Hello, UserName!</Text>
-      {/* <Button title="Make Card" />
-      <Button title="View your QR Code" /> */}
+    <>
       {viewCard ? (
-        <View style={styles.CameraContainer}>
-          <ArCardView />
-        </View>
+        <ArCardView />
       ) : (
-        <Button title="View Business Card" onPress={handleViewCardPress} />
+        <View>
+          <Text>Hello, UserName!</Text>
+          <Button title="View Business Card" onPress={handleViewCardPress} />
+        </View>
       )}
-    </View>
+    </>
   );
 }
 
