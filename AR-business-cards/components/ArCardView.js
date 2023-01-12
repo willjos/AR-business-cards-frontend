@@ -23,6 +23,8 @@ export default (props) => {
       }
     }
 
+    //Implement Fetching Data from the Backend
+
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
         <ViroFlexView
