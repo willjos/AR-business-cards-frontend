@@ -1,31 +1,40 @@
 import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
 import ArCardView from "./ArCardView";
+import QRScanner from "./QRScanner";
 
 export default function HomePage() {
+  const [viewFeature, setViewFeature] = useState(false);
   const [viewCard, setViewCard] = useState(false);
+  const [viewQR, setViewQR] = useState(false);
 
   function handleViewCardPress() {
     setViewCard(true);
+    setViewFeature(true);
   }
 
-  return (
-    <>
-      {viewCard ? (
-        <ArCardView />
-      ) : (
-        <View>
-          <Text>Hello, UserName!</Text>
-          <Button title="View Business Card" onPress={handleViewCardPress} />
-        </View>
-      )}
-    </>
-  );
-}
+  function handleViewQRPress() {
+    setViewQR(true);
+    setViewFeature(true);
+  }
 
-const styles = StyleSheet.create({
-  CameraContainer: {
-    height: "100%",
-    width: "100%",
-  },
-});
+  if (viewFeature) {
+    if (viewCard) {
+      return (
+        <>
+          <ArCardView />
+        </>
+      );
+    } else if (viewQR) {
+      return <QRScanner />;
+    }
+  } else {
+    return (
+      <View>
+        <Text>Hello, UserName!</Text>
+        <Button title="View Business Card" onPress={handleViewCardPress} />
+        <Button title="View QR Code" onPress={handleViewQRPress} />
+      </View>
+    );
+  }
+}
