@@ -17,7 +17,7 @@ export default () => {
     //   <StatusBar style="auto" /> */}
     //   <HomePage />
     // </View>
-    <HomePage />
+    <HomePage user="Biraj" />
   );
 };
 
