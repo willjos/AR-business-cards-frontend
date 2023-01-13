@@ -19,18 +19,12 @@ import ArCardView from "./components/ArCardView";
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
 
-  // conditional render for logged in or not?
-  // then use the navigation stack if you are logged in.
-  //use another navigation stack fro the login page
-  // ->
   // <Stack.Screen
   //   name="Login"
   //   component={UserLoginPage}
   //   options={{ title: "Login here" }}
   // />;
-  // function handleQRData(data) {
-  //   setQRData(data);
-  // }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -65,14 +59,3 @@ export default function App() {
 }
 
 const Stack = createNativeStackNavigator();
-
-var styles = StyleSheet.create({
-  f1: { flex: 1 },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
-});

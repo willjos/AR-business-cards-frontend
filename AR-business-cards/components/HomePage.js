@@ -37,9 +37,7 @@ export default function HomePage({ navigation }) {
         <Button
           style={styles.text}
           title="View Business Card"
-          onPress={() =>
-            navigation.navigate("QRScanner", { setQRData: setQRData })
-          }
+          onPress={() => navigation.navigate("QRScanner", { setQRData })}
         />
       </View>
 
