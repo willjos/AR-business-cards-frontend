@@ -11,13 +11,13 @@ import UserLoginPage from "./components/UserLoginPage";
 import HomePage from "./components/HomePage";
 
 export default () => {
+  const [currentUser, setCurrentUser] = useState("");
   return (
-    // <View style={styles.container}>
-    //   {/* <UserLoginPage />
-    //   <StatusBar style="auto" /> */}
-    //   <HomePage />
-    // </View>
-    <HomePage user="Biraj" />
+    <View style={styles.container}>
+      <UserLoginPage setCurrentUser={setCurrentUser} />
+      <StatusBar style="auto" />
+      <HomePage user={currentUser} />
+    </View>
   );
 };
 
