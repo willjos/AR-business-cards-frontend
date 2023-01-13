@@ -4,7 +4,7 @@ import ArCardView from "./ArCardView";
 import QRScanner from "./QRScanner";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
-export default function HomePage({ navigation }) {
+export default function HomePage({ navigation, setCurrentUser }) {
   const [viewFeature, setViewFeature] = useState(false);
   const [viewCard, setViewCard] = useState(false);
   const [viewQR, setViewQR] = useState(false);
@@ -59,7 +59,9 @@ export default function HomePage({ navigation }) {
         <Button
           style={styles.text}
           title="Log Out"
-          onPress={handleViewQRPress}
+          onPress={() => {
+            setCurrentUser(null);
+          }}
         />
       </View>
     </View>
