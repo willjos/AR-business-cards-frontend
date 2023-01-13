@@ -1,6 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   ViroARScene,
   ViroText,
@@ -9,25 +11,52 @@ import {
 } from "@viro-community/react-viro";
 import UserLoginPage from "./components/UserLoginPage";
 import HomePage from "./components/HomePage";
+import QRScanner from "./components/QRScanner";
+import QRGenerator from "./components/QRGenerator";
+import CreateEdit from "./components/CreateEdit";
+import ArCardView from "./components/ArCardView";
 
-export default () => {
+export default function App() {
   const [currentUser, setCurrentUser] = useState("");
-  return (
-    <View style={styles.container}>
-      <UserLoginPage setCurrentUser={setCurrentUser} />
-      <StatusBar style="auto" />
-      <HomePage user={currentUser} />
-    </View>
-  );
-};
 
-var styles = StyleSheet.create({
-  f1: { flex: 1 },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 10,
-  },
-});
+  // <Stack.Screen
+  //   name="Login"
+  //   component={UserLoginPage}
+  //   options={{ title: "Login here" }}
+  // />;
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{ title: `Hello ${currentUser}` }}
+        />
+        <Stack.Screen
+          name="QRScanner"
+          component={QRScanner}
+          options={{ title: `Hello ${currentUser}` }}
+        />
+        <Stack.Screen
+          name="QRGenerator"
+          component={QRGenerator}
+          options={{ title: `Hello ${currentUser}` }}
+        />
+        <Stack.Screen
+          name="EditCard"
+          component={CreateEdit}
+          options={{ title: `Hello ${currentUser}` }}
+        />
+        <Stack.Screen
+          name="ArCardView"
+          component={ArCardView}
+          options={{ title: `Hello ${currentUser}` }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+
+  );
+}
+
+const Stack = createNativeStackNavigator();

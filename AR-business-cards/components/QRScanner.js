@@ -4,7 +4,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { StatusBar } from "expo-status-bar";
 import ArCardView from "./ArCardView";
 
-export default function QRScanner({ setQRData }) {
+export default function QRScanner({ route, navigation }) {
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("no data");
   const [openAR, setOpenAR] = useState(false);
@@ -31,7 +31,7 @@ export default function QRScanner({ setQRData }) {
               title={"Scan"}
               onPress={() => {
                 setScanned(false);
-                setQRData(text);
+                route.params.setQRData(text);
                 setOpenAR(true);
               }}
               color="#bef4e7"

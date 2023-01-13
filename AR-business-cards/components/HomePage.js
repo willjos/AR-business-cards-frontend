@@ -4,7 +4,7 @@ import ArCardView from "./ArCardView";
 import QRScanner from "./QRScanner";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
-export default function HomePage(props) {
+export default function HomePage({ navigation }) {
   const [viewFeature, setViewFeature] = useState(false);
   const [viewCard, setViewCard] = useState(false);
   const [viewQR, setViewQR] = useState(false);
@@ -20,57 +20,50 @@ export default function HomePage(props) {
     setViewFeature(true);
   }
 
-  function handleQRData(data) {
-    setQRData(data);
-  }
-
-  if (viewFeature) {
-    if (viewCard) {
-      return (
-        <>
-          <ArCardView />
-        </>
-      );
-    } else if (viewQR) {
-      return <QRScanner setQRData={handleQRData} />;
-    }
-  } else {
-    return (
-      <View style={styles.container}>
-        <View style={styles.box}>
-          <Text style={styles.text}>Hello, {props.user}!</Text>
-        </View>
-        <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="View Business Card"
-            onPress={handleViewCardPress}
-          />
-        </View>
-        <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="View QR Codes"
-            onPress={handleViewQRPress}
-          />
-        </View>
-        <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="Edit card"
-            onPress={handleViewQRPress}
-          />
-        </View>
-        <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="Log Out"
-            onPress={handleViewQRPress}
-          />
-        </View>
+  // if (viewFeature) {
+  //   if (viewCard) {
+  //     return (
+  //       <>
+  //         <ArCardView />
+  //       </>
+  //     );
+  //   } else if (viewQR) {
+  //     return <QRScanner setQRData={setQRData} />;
+  //   }
+  // } else {
+  return (
+    <View style={styles.container}>
+      <View style={styles.box}>
+        <Button
+          style={styles.text}
+          title="View Business Card"
+          onPress={() => navigation.navigate("QRScanner", { setQRData })}
+        />
       </View>
-    );
-  }
+
+      <View style={styles.box}>
+        <Button
+          style={styles.text}
+          title="View QR Codes"
+          onPress={() => navigation.navigate("QRGenerator")}
+        />
+      </View>
+      <View style={styles.box}>
+        <Button
+          style={styles.text}
+          title="Edit card"
+          onPress={() => navigation.navigate("EditCard")}
+        />
+      </View>
+      <View style={styles.box}>
+        <Button
+          style={styles.text}
+          title="Log Out"
+          onPress={handleViewQRPress}
+        />
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
