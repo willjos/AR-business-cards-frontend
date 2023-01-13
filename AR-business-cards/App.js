@@ -24,11 +24,19 @@ export default function App() {
       {currentUser ? (
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Home"
               component={HomePage}
               options={{ title: `Hello ${currentUser}` }}
-            />
+            /> */}
+            <Stack.Screen
+              name="Home"
+              options={{ title: `Hello ${currentUser}` }}
+            >
+              {(props) => (
+                <HomePage {...props} setCurrentUser={setCurrentUser} />
+              )}
+            </Stack.Screen>
             <Stack.Screen
               name="QRScanner"
               component={QRScanner}
