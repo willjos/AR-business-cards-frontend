@@ -1,24 +1,45 @@
 import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
 
-export default function UserLoginPage() {
+export default function UserLoginPage({ setCurrentUser }) {
   const [loginButtonRender, setLoginButtonRender] = useState(true);
   const [createAccountButtonRender, setCreateAccountButtonRender] =
     useState(true);
+  const [usernameLoginInput, setUsernameLoginInput] = useState("");
+  const [passwordLoginInput, setPasswordLoginInput] = useState("");
+  const [usernameCreateAccountInput, setUsernameCreateAccountInput] =
+    useState("");
+  const [passwordCreateAccountInput, setPasswordCreateAccountInput] =
+    useState("");
 
   const handleLoginPress = () => {
     setLoginButtonRender(false);
     setCreateAccountButtonRender(true);
   };
-  const handleLoginSubmitPress = () => {
-    console.log("send API request to login endpoint");
+  const handleSubmitPress = async (endpoint, username, password) => {
+    const data = { username, password };
+    const response = await fetch(
+      `https://ar-business-cards-backend.herokuapp.com/${endpoint}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
+    console.log(response);
+    if (response.status == 200) {
+      setCurrentUser(data.username);
+    } else {
+      return alert("Access Denied");
+    }
   };
   const handleCreateAccountPress = () => {
     setCreateAccountButtonRender(false);
     setLoginButtonRender(true);
   };
-  const handleCreateAccountSubmitPress = () => {
-    console.log("send API request to create-account endpoint");
+
+  const handleInputChange = (setState, value) => {
+    setState(value);
   };
 
   return (
@@ -29,9 +50,26 @@ export default function UserLoginPage() {
       ) : (
         <View>
           <Text>Log in to your existing account</Text>
-          <TextInput style={styles.input} placeholder="Username" />
-          <TextInput style={styles.input} placeholder="Password" />
-          <Button title="Submit" onPress={handleLoginSubmitPress} />
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            onChangeText={(text) =>
+              handleInputChange(setUsernameLoginInput, text)
+            }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={(text) =>
+              handleInputChange(setPasswordLoginInput, text)
+            }
+          />
+          <Button
+            title="Submit"
+            onPress={() =>
+              handleSubmitPress("login", usernameLoginInput, passwordLoginInput)
+            }
+          />
         </View>
       )}
       {createAccountButtonRender ? (
@@ -39,9 +77,30 @@ export default function UserLoginPage() {
       ) : (
         <View>
           <Text>Register an account with us</Text>
-          <TextInput style={styles.input} placeholder="Username" />
-          <TextInput style={styles.input} placeholder="Password" />
-          <Button title="Submit" onPress={handleCreateAccountSubmitPress} />
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            onChangeText={(text) =>
+              handleInputChange(setUsernameCreateAccountInput, text)
+            }
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            onChangeText={(text) =>
+              handleInputChange(setPasswordCreateAccountInput, text)
+            }
+          />
+          <Button
+            title="Submit"
+            onPress={() =>
+              handleSubmitPress(
+                "register-user",
+                usernameCreateAccountInput,
+                passwordCreateAccountInput
+              )
+            }
+          />
         </View>
       )}
     </View>
