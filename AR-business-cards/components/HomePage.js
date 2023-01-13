@@ -51,7 +51,7 @@ export default function HomePage({ navigation }) {
       <View style={styles.box}>
         <Button
           style={styles.text}
-          title="Edit card"
+          title="Create card"
           onPress={() => navigation.navigate("EditCard")}
         />
       </View>
