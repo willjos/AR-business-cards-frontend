@@ -1,7 +1,11 @@
 import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
 
-export default function UserLoginPage({ setCurrentUser }) {
+export default function UserLoginPage({
+  setCurrentUser,
+  navigation,
+  setQRData,
+}) {
   const [loginButtonRender, setLoginButtonRender] = useState(true);
   const [createAccountButtonRender, setCreateAccountButtonRender] =
     useState(true);
@@ -103,6 +107,12 @@ export default function UserLoginPage({ setCurrentUser }) {
           />
         </View>
       )}
+      <View style={styles.box}>
+        <Button
+          title="View Business Card"
+          onPress={() => navigation.navigate("QRScanner", { setQRData })}
+        />
+      </View>
     </View>
   );
 }

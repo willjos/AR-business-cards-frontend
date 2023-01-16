@@ -18,17 +18,6 @@ export default function HomePage({ navigation, setCurrentUser }) {
     setViewFeature(true);
   }
 
-  // if (viewFeature) {
-  //   if (viewCard) {
-  //     return (
-  //       <>
-  //         <ArCardView />
-  //       </>
-  //     );
-  //   } else if (viewQR) {
-  //     return <QRScanner setQRData={setQRData} />;
-  //   }
-  // } else {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
