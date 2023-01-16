@@ -2,8 +2,6 @@ import QRCode from "react-native-qrcode-svg";
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 
 export default function QRInfo({ code }) {
-  console.log(code);
-  const title = "placeHolder";
   return (
     <View style={styles.QRContainer}>
       <QRCode value={code.id.toString()} />
