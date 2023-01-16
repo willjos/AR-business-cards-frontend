@@ -24,11 +24,6 @@ export default function App() {
       {currentUser ? (
         <NavigationContainer>
           <Stack.Navigator>
-            {/* <Stack.Screen
-              name="Home"
-              component={HomePage}
-              options={{ title: `Hello ${currentUser}` }}
-            /> */}
             <Stack.Screen
               name="Home"
               options={{ title: `Hello ${currentUser}` }}
@@ -47,11 +42,9 @@ export default function App() {
               component={QRGenerator}
               options={{ title: `Hello ${currentUser}` }}
             />
-            <Stack.Screen
-              name="EditCard"
-              component={CreateEdit}
-              options={{ title: `Hello ${currentUser}` }}
-            />
+            <Stack.Screen name="EditCard">
+              {(props) => <CreateEdit {...props} currentUser={currentUser} />}
+            </Stack.Screen>
             <Stack.Screen
               name="ArCardView"
               component={ArCardView}
