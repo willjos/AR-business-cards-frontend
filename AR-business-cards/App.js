@@ -42,7 +42,10 @@ export default function App() {
               component={QRGenerator}
               options={{ title: `Hello ${currentUser}` }}
             />
-            <Stack.Screen name="EditCard">
+            <Stack.Screen
+              name="EditCard"
+              options={{ title: `Hello ${currentUser}` }}
+            >
               {(props) => <CreateEdit {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen
