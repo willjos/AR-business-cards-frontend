@@ -14,8 +14,9 @@ Frontend repo for the W11-W12 group project
 ```
 git clone https://github.com/willjos/AR-business-cards-frontend.git
 ```
-2. Make a local.properties file in the project
-This should be within the android folder.
+2. Make a local.properties file in the project. This should be within the android folder. 
+
+Alternatively, in a terminal from the root directory(macOS and linux), enter the following: 
 ``` 
 touch android/local.properties 
 ```
