@@ -6,6 +6,7 @@ import {
   ViroTrackingStateConstants,
   ViroARSceneNavigator,
   ViroFlexView,
+  ViroARTrackingTargets,
 } from "@viro-community/react-viro";
 
 export default ({ cardDetails }) => {
