@@ -35,21 +35,21 @@ export default function App() {
             <Stack.Screen
               name="QRScanner"
               component={QRScanner}
-              options={{ title: `Scan A QR Code` }}
+              options={{ title: `Scan a QR code` }}
             />
             <Stack.Screen
               name="QRGenerator"
-              options={{ title: `View Your Cards` }}
+              options={{ title: `View your cards` }}
             >
               {(props) => <QRGenerator {...props} currentUser={currentUser} />}
             </Stack.Screen>
-            <Stack.Screen name="EditCard" options={{ title: `Make a Card` }}>
+            <Stack.Screen name="EditCard" options={{ title: `Make a card` }}>
               {(props) => <CreateEdit {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen
               name="ArCardView"
               component={ArCardView}
-              options={{ title: `Ar Card View` }}
+              options={{ title: `Ar card view` }}
             />
           </Stack.Navigator>
         </NavigationContainer>
