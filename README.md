@@ -19,4 +19,16 @@ This should be within the android folder.
 ``` 
 touch android/local.properties 
 ```
-
+3. Inside the local.properties file, specify the path for the android SDK location
+    For macOS users(USERNAME is your OSX username):
+    ```
+    sdk.dir = /Users/<USERNAME>/Library/Android/sdk
+    ```
+    For windows users(USERNAME is your PC username):
+    ```
+    sdk.dir=C:\\Users\\UserName\\AppData\\Local\\Android\\sdk
+    ```
+    For linux users(USERNAME is your linux username):
+    ```
+    sdk.dir = /home/USERNAME/Android/Sdk
+    ```
