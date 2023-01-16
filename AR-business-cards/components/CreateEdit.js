@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
-export default function CreateEdit({ currentUser }) {
+export default function CreateEdit({ currentUser, isCreate, id }) {
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
   const [content, setContent] = useState("");
@@ -23,26 +23,41 @@ export default function CreateEdit({ currentUser }) {
     setContent(content);
   };
 
-  const handleCreatePress = async () => {
+  const handleSubmitPress = async () => {
     const data = {
       username: currentUser,
       title,
       colour,
       content,
     };
-
-    const response = await fetch(
-      `https://ar-business-cards-backend.herokuapp.com/create-card`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+    if (isCreate) {
+      const response = await fetch(
+        `https://ar-business-cards-backend.herokuapp.com/create-card`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.status == 200) {
+        return alert("Card created");
+      } else {
+        return alert("Failed to create card");
       }
-    );
-    if (response.status == 200) {
-      return alert("Card created");
     } else {
-      return alert("Failed to create card");
+      const response = await fetch(
+        `https://ar-business-cards-backend.herokuapp.com/edit-card/${id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.status == 200) {
+        return alert("Card edited");
+      } else {
+        return alert("Failed to edit card");
+      }
     }
   };
 
@@ -79,7 +94,7 @@ export default function CreateEdit({ currentUser }) {
         </View>
         <View style={styles.doneAndPreview}>
           <Button title="Preview"></Button>
-          <Button title="Create" onPress={handleCreatePress}></Button>
+          <Button title="Submit" onPress={handleSubmitPress}></Button>
         </View>
       </ScrollView>
       <Button title="Back"></Button>

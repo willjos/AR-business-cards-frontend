@@ -43,8 +43,14 @@ export default function App() {
             >
               {(props) => <QRGenerator {...props} currentUser={currentUser} />}
             </Stack.Screen>
-            <Stack.Screen name="EditCard" options={{ title: `Make a card` }}>
-              {(props) => <CreateEdit {...props} currentUser={currentUser} />}
+            <Stack.Screen name="CreateCard" options={{ title: `Make a card` }}>
+              {(props) => (
+                <CreateEdit
+                  {...props}
+                  currentUser={currentUser}
+                  isCreate={true}
+                />
+              )}
             </Stack.Screen>
             <Stack.Screen
               name="ArCardView"

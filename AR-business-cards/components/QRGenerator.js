@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
+
 export default function QRGenerator({ currentUser }) {
   const [userCodes, setUserCodes] = useState([]);
   const handleQRCodes = async () => {
@@ -35,7 +36,7 @@ export default function QRGenerator({ currentUser }) {
       {userCodes && (
         <>
           {userCodes.map((e, key) => (
-            <QRInfo code={e} key={key} />
+            <QRInfo code={e} key={key} currentUser={currentUser} />
           ))}
         </>
       )}
