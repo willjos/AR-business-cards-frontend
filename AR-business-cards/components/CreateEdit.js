@@ -6,13 +6,12 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import React, { useState, useEffect } from "react";
-import QRCode from "react-native-qrcode-svg";
+import React, { useState } from "react";
 
-export default function CreateEdit() {
+export default function CreateEdit({ currentUser }) {
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
-  const [details, setDetails] = useState("");
+  const [content, setContent] = useState("");
 
   const handleColourInput = (colour) => {
     setColour(colour);
@@ -20,16 +19,40 @@ export default function CreateEdit() {
   const handleTitleInput = (title) => {
     setTitle(title);
   };
-  const handleDetailsInput = (details) => {
-    setDetails(details);
+  const handleContentInput = (content) => {
+    setContent(content);
   };
+
+  const handleCreatePress = async () => {
+    const data = {
+      username: currentUser,
+      title,
+      colour,
+      content,
+    };
+
+    const response = await fetch(
+      `https://ar-business-cards-backend.herokuapp.com/create-card`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
+    if (response.status == 200) {
+      return alert("Card created");
+    } else {
+      return alert("Failed to create card");
+    }
+  };
+
   return (
     <View>
       <ScrollView>
         <Text style={styles.text}>Title</Text>
         <View style={styles.titleBox}>
           <TextInput
-            onChange={handleTitleInput}
+            onChangeText={(text) => handleTitleInput(text)}
             placeholder="Enter Title..."
             placeholderTextColor="grey"
           />
@@ -38,17 +61,17 @@ export default function CreateEdit() {
         <Text style={styles.text}>Colour</Text>
         <View style={styles.titleBox}>
           <TextInput
-            onChange={handleTitleInput}
+            onChangeText={(text) => handleColourInput(text)}
             placeholder="Enter Hex code..."
             placeholderTextColor="grey"
           />
         </View>
-        <Text style={styles.text}>Extra(4 lines)</Text>
+        <Text style={styles.text}>Description</Text>
         <View style={styles.detailBox}>
           <TextInput
-            onChange={handleDetailsInput}
+            onChangeText={(text) => handleContentInput(text)}
             style={{ padding: 10 }}
-            placeholder="Enter Details.."
+            placeholder="Enter content.."
             placeholderTextColor="grey"
             multiline={true}
             numberOfLines={4}
@@ -56,7 +79,7 @@ export default function CreateEdit() {
         </View>
         <View style={styles.doneAndPreview}>
           <Button title="Preview"></Button>
-          <Button title="Create"></Button>
+          <Button title="Create" onPress={handleCreatePress}></Button>
         </View>
       </ScrollView>
       <Button title="Back"></Button>
