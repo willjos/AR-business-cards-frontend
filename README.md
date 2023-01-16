@@ -50,13 +50,16 @@ touch android/local.properties
     
     
 5. Developer settings on your phone.
+
    In your android phone, enable developer options and make sure USB debugging within developer options is also enabled.
    
-6. Connect your phone
+6. Connect your phone.
+
    Plug in your android phone to your computer and allow the computer to make changes on your phone,
    there should be a popup message for this as soon as you plug in your device. 
    
 6. Run the project
+
    In your terminal, from the root directory of the project run the following command:
    ```
    expo run:android
