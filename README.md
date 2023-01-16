@@ -5,7 +5,7 @@ Frontend repo for the W11-W12 group project
 
 #### Prerequisites
 - You will require an android phone, emulators will not work with AR, IOS is currently not supported.
-- Java should be installed on your machine.
+- The latest version of Java (JRE and JDK) should be installed on your machine.
 - Android studio should be installed on your machine.
 - wWthin android studio, you should also have the Cmake plugin installed and updated.
 - You will need a cable to connect your phone to the computer.
