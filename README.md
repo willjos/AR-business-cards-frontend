@@ -27,7 +27,7 @@ touch android/local.properties
     ```
     For windows users(USERNAME is your PC username):
     ```
-    sdk.dir=C:\\Users\\UserName\\AppData\\Local\\Android\\sdk
+    sdk.dir=C:\\Users\\USERName\\AppData\\Local\\Android\\sdk
     ```
     For linux users(USERNAME is your linux username):
     ```
