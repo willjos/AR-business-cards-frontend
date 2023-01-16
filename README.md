@@ -1,7 +1,7 @@
 # AR-business-cards-frontend
 Frontend repo for the W11-W12 group project
 
-# How to run this project
+#How to run this project
 
 ## Prerequisites
 - You will require an android phone, emulators will not work with AR, IOS is currently not supported.
@@ -33,3 +33,17 @@ touch android/local.properties
     ```
     sdk.dir = /home/USERNAME/Android/Sdk
     ```
+ 4. ViroReact Bug fix:
+   
+    With the version of ViroReact that was used in this project, if this step is not completed, during the build you will get: 
+    "Invariant Violation: Tried to register two views with same name VRTQuad" error.
+    
+    To fix this, we need to edit the files ViroSurface.tsx and ViroSurface.js:
+    From the projects root directory:
+        ```
+        /node_modules/@viro-community/components/ViroSurface.tsx
+        /node_modules/@viro-community/components/dist/components/ViroSurface.js
+        ```
+        For ViroSurface.tsx go to line 99 and change "VRTQuad" string to "VRTSurface".
+        For ViroSurface.js again go to line 99 and change "VRTQuad string to "VRTSurface".
+        
