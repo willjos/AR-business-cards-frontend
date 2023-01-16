@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { StatusBar } from "expo-status-bar";
 import ArCardView from "./ArCardView";
 
 export default function QRScanner({ route }) {
@@ -13,7 +12,6 @@ export default function QRScanner({ route }) {
     const response = await fetch(
       `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
     );
-    console.log(response);
     setScanned(true);
     if (response.status == 200) {
       setText(`Scan Successful: Barcode Type ${type} data ${data}`);
