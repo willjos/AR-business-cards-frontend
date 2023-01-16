@@ -41,11 +41,23 @@ touch android/local.properties
     To fix this, we need to edit the files ViroSurface.tsx and ViroSurface.js:
     From the projects root directory:
     
-        ```
         /node_modules/@viro-community/components/ViroSurface.tsx
         /node_modules/@viro-community/components/dist/components/ViroSurface.js
-        ```
         
     For ViroSurface.tsx go to line 99 and change "VRTQuad" string to "VRTSurface".
     For ViroSurface.js again go to line 99 and change "VRTQuad string to "VRTSurface".
-        
+    
+    
+5. Developer settings on your phone.
+   In your android phone, enable developer options and make sure USB debugging within developer options is also enabled.
+   
+6. Connect your phone
+   Plug in your android phone to your computer and allow the computer to make changes on your phone,
+   there should be a popup message for this as soon as you plug in your device. 
+   
+6. Run the project
+   In your terminal, from the root directory of the project run the following command:
+   ```
+   expo run:android
+   ```
+  Your phone will ask if you want go give camera permissions to the app, allow camera permissions as AR will not function without camera permissions.    
