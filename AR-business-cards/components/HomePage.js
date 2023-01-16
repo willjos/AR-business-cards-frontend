@@ -50,7 +50,7 @@ export default function HomePage({ navigation, setCurrentUser }) {
         <Button
           style={styles.text}
           title="Create card"
-          onPress={() => navigation.navigate("EditCard")}
+          onPress={() => navigation.navigate("CreateCard")}
         />
       </View>
       <View style={styles.box}>
