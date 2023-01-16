@@ -64,4 +64,9 @@ touch android/local.properties
    ```
    expo run:android
    ```
+   if this throws an error:
+   ```
+    npx expo run:android
+   ```
+   
   Your phone will ask if you want go give camera permissions to the app, allow camera permissions as AR will not function without camera permissions.    
