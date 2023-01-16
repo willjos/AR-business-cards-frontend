@@ -1,18 +1,33 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { StatusBar } from "expo-status-bar";
 import ArCardView from "./ArCardView";
 
-export default function QRScanner({ route, navigation }) {
+export default function QRScanner({ route }) {
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("no data");
   const [openAR, setOpenAR] = useState(false);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
+    const response = await fetch(
+      `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
+    );
     setScanned(true);
-    setText(`Scan Succesful: Barcode Type ${type} data ${data}`);
+    if (response.status == 200) {
+      setText(`Scan Successful: Barcode Type ${type} data ${data}`);
+      setOpenAR(true);
+    } else {
+      alert(
+        "Invalid QR: The card does not exist or the QR code scanned is not valid."
+      );
+    }
   };
+
+  const handleScanPress = () => {
+    setScanned(false);
+    route.params.setQRData(text);
+  };
+
   return (
     <>
       {openAR ? (
@@ -29,11 +44,7 @@ export default function QRScanner({ route, navigation }) {
           {scanned && (
             <Button
               title={"Scan"}
-              onPress={() => {
-                setScanned(false);
-                route.params.setQRData(text);
-                setOpenAR(true);
-              }}
+              onPress={() => handleScanPress}
               color="#bef4e7"
             />
           )}
