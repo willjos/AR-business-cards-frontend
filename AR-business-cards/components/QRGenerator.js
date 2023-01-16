@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
 export default function QRGenerator({ currentUser }) {
   const [userCodes, setUserCodes] = useState([]);
-
   const handleQRCodes = async () => {
     try {
       const response = await fetch(

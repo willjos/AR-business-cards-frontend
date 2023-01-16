@@ -1,20 +1,22 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ArCardView from "./ArCardView";
 
 export default function QRScanner({ route }) {
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState("no data");
   const [openAR, setOpenAR] = useState(false);
+  const [cardDetails, setCardDetails] = useState({});
 
   const handleBarCodeScanned = async ({ type, data }) => {
+    setScanned(true);
     const response = await fetch(
       `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
     );
-    setScanned(true);
+    const responseJSON = await response.json();
     if (response.status == 200) {
-      setText(`Scan Successful: Barcode Type ${type} data ${data}`);
+      console.log(`Scan Successful: Barcode Type ${type} data ${data}`);
+      await setCardDetails(responseJSON[0]);
       setOpenAR(true);
     } else {
       alert(
@@ -31,7 +33,7 @@ export default function QRScanner({ route }) {
   return (
     <>
       {openAR ? (
-        <ArCardView BName={text} />
+        <ArCardView cardDetails={cardDetails} />
       ) : (
         <View style={styles.container}>
           <View style={styles.barcodebox}>
@@ -40,7 +42,6 @@ export default function QRScanner({ route }) {
               style={{ height: 400, width: 400 }}
             />
           </View>
-          <Text style={styles.maintext}>{text}</Text>
           {scanned && (
             <Button
               title={"Scan"}

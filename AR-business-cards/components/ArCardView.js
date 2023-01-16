@@ -7,23 +7,17 @@ import {
   ViroARSceneNavigator,
   ViroFlexView,
 } from "@viro-community/react-viro";
-// import BusinessCardScene from "./BusinessCard";
 
-export default (props) => {
+export default ({ cardDetails }) => {
   function BusinessCardScene() {
-    const [businessName, setBusinessName] = useState("Business Name");
-    const [businessDetails, setBusinessDetails] = useState("Business Details");
-
     function onInitialized(state, reason) {
       console.log("Business Card", state, reason);
       if (state === ViroTrackingStateConstants.TRACKING_NORMAL) {
-        setBusinessName(props.BName);
+        console.log(cardDetails);
       } else if (state === ViroTrackingStateConstants.TRACKING_NONE) {
-        setBusinessName("Tracking Lost!");
+        console.log("Tracking Lost!");
       }
     }
-
-    //Implement Fetching Data from the Backend
 
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
@@ -31,18 +25,18 @@ export default (props) => {
           position={[0, 0, -5]}
           height={2}
           width={3}
-          backgroundColor={"rgba(0,255,255,0.9)"}
+          backgroundColor={cardDetails.colour}
           style={styles.f1}
         >
           <ViroText
-            text={businessName}
+            text={cardDetails.title}
             textClipMode="None"
             scale={[0.5, 0.5, 0.5]}
             textLineBreakMode="CharWrap"
             style={styles.CardTextStyle}
           />
           <ViroText
-            text={businessDetails}
+            text={cardDetails.content}
             textClipMode="None"
             scale={[0.5, 0.5, 0.5]}
             textLineBreakMode="CharWrap"
