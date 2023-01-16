@@ -1,7 +1,5 @@
 import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
-import ArCardView from "./ArCardView";
-import QRScanner from "./QRScanner";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 export default function HomePage({ navigation, setCurrentUser }) {

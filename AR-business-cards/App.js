@@ -17,7 +17,7 @@ import CreateEdit from "./components/CreateEdit";
 import ArCardView from "./components/ArCardView";
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState("");
 
   return (
     <>
@@ -35,27 +35,28 @@ export default function App() {
             <Stack.Screen
               name="QRScanner"
               component={QRScanner}
-              options={{ title: `Hello ${currentUser}` }}
+              options={{ title: `Scan A QR Code` }}
             />
             <Stack.Screen
               name="QRGenerator"
-              component={QRGenerator}
-              options={{ title: `Hello ${currentUser}` }}
-            />
-            <Stack.Screen name="EditCard">
+              options={{ title: `View Your Cards` }}
+            >
+              {(props) => <QRGenerator {...props} currentUser={currentUser} />}
+            </Stack.Screen>
+            <Stack.Screen name="EditCard" options={{ title: `Make a Card` }}>
               {(props) => <CreateEdit {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen
               name="ArCardView"
               component={ArCardView}
-              options={{ title: `Hello ${currentUser}` }}
+              options={{ title: `Ar Card View` }}
             />
           </Stack.Navigator>
         </NavigationContainer>
       ) : (
         <NavigationContainer>
           <LoginStack.Navigator>
-            <LoginStack.Screen name="Login">
+            <LoginStack.Screen name="Login" options={{ title: `Welcome` }}>
               {(props) => (
                 <UserLoginPage {...props} setCurrentUser={setCurrentUser} />
               )}
