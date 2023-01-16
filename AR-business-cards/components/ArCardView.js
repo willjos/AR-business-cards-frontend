@@ -7,7 +7,9 @@ import {
   ViroARSceneNavigator,
   ViroFlexView,
   ViroARTrackingTargets,
+  ViroARImageMarker,
 } from "@viro-community/react-viro";
+// import iconLogo from "./assets/icon.png";
 
 export default ({ cardDetails }) => {
   function BusinessCardScene() {
@@ -20,8 +22,17 @@ export default ({ cardDetails }) => {
       }
     }
 
+    // ViroARTrackingTargets.createTargets({
+    //   iconLogo: {
+    //     source: require(iconLogo),
+    //     physicalWidth: 0.165,
+    //     type: "Image",
+    //   },
+    // });
+
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
+        {/* <ViroARImageMarker target="iconLogo"> */}
         <ViroFlexView
           position={[0, 0, -5]}
           height={2}
@@ -44,6 +55,7 @@ export default ({ cardDetails }) => {
             style={styles.CardTextStyle}
           />
         </ViroFlexView>
+        {/* </ViroARImageMarker> */}
       </ViroARScene>
     );
   }

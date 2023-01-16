@@ -11,7 +11,7 @@ export default function QRScanner({ route }) {
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     const response = await fetch(
-      `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
+      `https://ar-business-cards-backend.herokuapp.com/view-card/${data}`
     );
     if (response.status == 200) {
       const responseJSON = await response.json();
