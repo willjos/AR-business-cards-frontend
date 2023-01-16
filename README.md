@@ -2,9 +2,21 @@
 Frontend repo for the W11-W12 group project
 
 # How to run this project
-You will require an android phone, emulators will not work with AR, IOS is currently not supported.
+
+## Prerequisites
+- You will require an android phone, emulators will not work with AR, IOS is currently not supported.
+- Java should be installed on your machine.
+- Android studio should be installed on your machine.
+- wWthin android studio, you should also have the Cmake plugin installed and updated.
+- You will need a cable to connect your phone to the computer.
 
 1. Clone this repo 
 ```
 git clone https://github.com/willjos/AR-business-cards-frontend.git
 ```
+2. Make a local.properties file in the project
+This should be within the android folder.
+``` 
+touch android/local.properties 
+```
+
