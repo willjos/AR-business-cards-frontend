@@ -62,6 +62,7 @@ export default function UserLoginPage({
             }
           />
           <TextInput
+            secureTextEntry={true}
             style={styles.input}
             placeholder="Password"
             onChangeText={(text) =>
@@ -89,6 +90,7 @@ export default function UserLoginPage({
             }
           />
           <TextInput
+            secureTextEntry={true}
             style={styles.input}
             placeholder="Password"
             onChangeText={(text) =>
