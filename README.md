@@ -40,10 +40,12 @@ touch android/local.properties
     
     To fix this, we need to edit the files ViroSurface.tsx and ViroSurface.js:
     From the projects root directory:
+    
         ```
         /node_modules/@viro-community/components/ViroSurface.tsx
         /node_modules/@viro-community/components/dist/components/ViroSurface.js
         ```
-        For ViroSurface.tsx go to line 99 and change "VRTQuad" string to "VRTSurface".
-        For ViroSurface.js again go to line 99 and change "VRTQuad string to "VRTSurface".
+        
+    For ViroSurface.tsx go to line 99 and change "VRTQuad" string to "VRTSurface".
+    For ViroSurface.js again go to line 99 and change "VRTQuad string to "VRTSurface".
         
