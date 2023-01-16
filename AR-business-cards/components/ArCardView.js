@@ -10,6 +10,7 @@ import {
   ViroARImageMarker,
 } from "@viro-community/react-viro";
 // import iconLogo from "./assets/icon.png";
+import icon from "./icon.png";
 
 export default ({ cardDetails }) => {
   function BusinessCardScene() {
@@ -22,40 +23,44 @@ export default ({ cardDetails }) => {
       }
     }
 
-    // ViroARTrackingTargets.createTargets({
-    //   iconLogo: {
-    //     source: require(iconLogo),
-    //     physicalWidth: 0.165,
-    //     type: "Image",
-    //   },
-    // });
+    ViroARTrackingTargets.createTargets({
+      iconLogo: {
+        source: require("./paracetamol.jpg"),
+        physicalWidth: 1.8,
+        orientation: "Up",
+      },
+    });
+
+    const anchorFound = () => {
+      console.log("Anchor Found!");
+    };
 
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
-        {/* <ViroARImageMarker target="iconLogo"> */}
-        <ViroFlexView
-          position={[0, 0, -5]}
-          height={2}
-          width={3}
-          backgroundColor={cardDetails.colour}
-          style={styles.f1}
-        >
-          <ViroText
-            text={cardDetails.title}
-            textClipMode="None"
-            scale={[0.5, 0.5, 0.5]}
-            textLineBreakMode="CharWrap"
-            style={styles.CardTextStyle}
-          />
-          <ViroText
-            text={cardDetails.content}
-            textClipMode="None"
-            scale={[0.5, 0.5, 0.5]}
-            textLineBreakMode="CharWrap"
-            style={styles.CardTextStyle}
-          />
-        </ViroFlexView>
-        {/* </ViroARImageMarker> */}
+        <ViroARImageMarker target={"iconLogo"} onAnchorFound={anchorFound}>
+          <ViroFlexView
+            position={[0, 0, -1]}
+            height={2}
+            width={3}
+            backgroundColor={cardDetails.colour}
+            style={styles.f1}
+          >
+            <ViroText
+              text={cardDetails.title}
+              textClipMode="None"
+              scale={[0.5, 0.5, 0.5]}
+              textLineBreakMode="CharWrap"
+              style={styles.CardTextStyle}
+            />
+            <ViroText
+              text={cardDetails.content}
+              textClipMode="None"
+              scale={[0.5, 0.5, 0.5]}
+              textLineBreakMode="CharWrap"
+              style={styles.CardTextStyle}
+            />
+          </ViroFlexView>
+        </ViroARImageMarker>
       </ViroARScene>
     );
   }

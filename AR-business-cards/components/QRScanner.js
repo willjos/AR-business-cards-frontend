@@ -28,7 +28,7 @@ export default function QRScanner({ route }) {
 
   const handleScanPress = () => {
     setScanned(false);
-    route.params.setQRData(text);
+    // route.params.setQRData(text);
   };
 
   useEffect(() => {
