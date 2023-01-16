@@ -7,7 +7,7 @@ export default function QRGenerator({ currentUser }) {
   const handleQRCodes = async () => {
     try {
       const response = await fetch(
-        `https://ar-business-cards-backend.herokuapp.com/getUserQR?username=${"willsimms"}`,
+        `https://ar-business-cards-backend.herokuapp.com/getUserQR?username=${currentUser}`,
         {
           method: "GET",
           headers: {
