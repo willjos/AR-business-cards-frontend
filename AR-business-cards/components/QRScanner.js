@@ -7,20 +7,22 @@ export default function QRScanner({ route }) {
   const [scanned, setScanned] = useState(false);
   const [openAR, setOpenAR] = useState(false);
   const [cardDetails, setCardDetails] = useState({});
+  const [text, setText] = useState("");
 
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     const response = await fetch(
       `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
     );
-    const responseJSON = await response.json();
     if (response.status == 200) {
-      console.log(`Scan Successful: Barcode Type ${type} data ${data}`);
+      const responseJSON = await response.json();
+      setText(`Scan Successful: Barcode Type ${type} data ${data}`);
+      console.log(responseJSON);
       await setCardDetails(responseJSON[0]);
       setOpenAR(true);
     } else {
       alert(
-        "Invalid QR: The card does not exist or the QR code scanned is not valid."
+        `Invalid QR: The card does not exist or the QR code scanned is not valid. ${data}`
       );
     }
   };
@@ -29,6 +31,10 @@ export default function QRScanner({ route }) {
     setScanned(false);
     route.params.setQRData(text);
   };
+
+  useEffect(() => {
+    console.log("scanned" + scanned);
+  }, [scanned]);
 
   return (
     <>
@@ -42,10 +48,13 @@ export default function QRScanner({ route }) {
               style={{ height: 400, width: 400 }}
             />
           </View>
+          <Text>{text}</Text>
           {scanned && (
             <Button
-              title={"Scan"}
-              onPress={() => handleScanPress}
+              title={"Scan again"}
+              onPress={() => {
+                handleScanPress();
+              }}
               color="#bef4e7"
             />
           )}
