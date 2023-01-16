@@ -6,9 +6,9 @@ export default function QRInfo({ code }) {
   const title = "placeHolder";
   return (
     <View style={styles.QRContainer}>
-      <QRCode value={"9"} />
+      <QRCode value={code.id.toString()} />
       <View style={styles.infoContainer}>
-        <Text>{title}</Text>
+        <Text>{code.title.toString()}</Text>
       </View>
     </View>
   );

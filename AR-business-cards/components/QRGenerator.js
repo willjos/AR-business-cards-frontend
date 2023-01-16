@@ -36,13 +36,10 @@ export default function QRGenerator({ currentUser }) {
       {userCodes && (
         <>
           {userCodes.map((e, key) => (
-            <>
-              <QRInfo code={e} key={key} />
-            </>
+            <QRInfo code={e} key={key} />
           ))}
         </>
       )}
-      <QRInfo code="1" />
     </ScrollView>
   );
 }
