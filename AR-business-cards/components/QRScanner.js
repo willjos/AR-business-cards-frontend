@@ -1,24 +1,27 @@
 import { StyleSheet, Text, View, Button } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ArCardView from "./ArCardView";
 
 export default function QRScanner({ route }) {
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState("no data");
   const [openAR, setOpenAR] = useState(false);
+  const [cardDetails, setCardDetails] = useState({});
 
   const handleBarCodeScanned = async ({ type, data }) => {
-    const response = await fetch(
-      `https://ar-business-cards-backend.herokuapp.com/view-card?qr=${data}`
-    );
     setScanned(true);
+    const response = await fetch(
+      `https://ar-business-cards-backend.herokuapp.com/view-card/${data}`
+    );
     if (response.status == 200) {
-      setText(`Scan Successful: Barcode Type ${type} data ${data}`);
+      const responseJSON = await response.json();
+      console.log(`Scan Successful: Barcode Type ${type} data ${data}`);
+      console.log(responseJSON);
+      await setCardDetails(responseJSON[0]);
       setOpenAR(true);
     } else {
       alert(
-        "Invalid QR: The card does not exist or the QR code scanned is not valid."
+        `Invalid QR: The card does not exist or the QR code scanned is not valid. (for qr data: ${data})`
       );
     }
   };
@@ -28,10 +31,14 @@ export default function QRScanner({ route }) {
     route.params.setQRData(text);
   };
 
+  useEffect(() => {
+    console.log("scanned" + scanned);
+  }, [scanned]);
+
   return (
     <>
       {openAR ? (
-        <ArCardView BName={text} />
+        <ArCardView cardDetails={cardDetails} />
       ) : (
         <View style={styles.container}>
           <View style={styles.barcodebox}>
@@ -40,11 +47,12 @@ export default function QRScanner({ route }) {
               style={{ height: 400, width: 400 }}
             />
           </View>
-          <Text style={styles.maintext}>{text}</Text>
           {scanned && (
             <Button
-              title={"Scan"}
-              onPress={() => handleScanPress}
+              title={"Scan again"}
+              onPress={() => {
+                handleScanPress();
+              }}
               color="#bef4e7"
             />
           )}
