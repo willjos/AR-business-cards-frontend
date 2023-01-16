@@ -1,9 +1,9 @@
 # AR-business-cards-frontend
 Frontend repo for the W11-W12 group project
 
-#How to run this project
+## How to run this project
 
-## Prerequisites
+# Prerequisites
 - You will require an android phone, emulators will not work with AR, IOS is currently not supported.
 - Java should be installed on your machine.
 - Android studio should be installed on your machine.
