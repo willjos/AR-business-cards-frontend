@@ -20,6 +20,7 @@ This should be within the android folder.
 touch android/local.properties 
 ```
 3. Inside the local.properties file, specify the path for the android SDK location
+
     For macOS users(USERNAME is your OSX username):
     ```
     sdk.dir = /Users/<USERNAME>/Library/Android/sdk
