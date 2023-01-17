@@ -20,8 +20,6 @@ export default function QRScanner({ currentUser }) {
     );
     if (response.status == 200) {
       const responseJSON = await response.json();
-      console.log(`Scan Successful: Barcode Type ${type} data ${data}`);
-      console.log(responseJSON);
       await setCardDetails(responseJSON[0]);
       setOpenAR(true);
     } else {
