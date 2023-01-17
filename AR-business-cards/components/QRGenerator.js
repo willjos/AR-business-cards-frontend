@@ -2,7 +2,7 @@ import { ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
 
-export default function QRGenerator({ currentUser }) {
+export default function QRGenerator({ currentUser, navigation }) {
   const [userCodes, setUserCodes] = useState([]);
   const handleQRCodes = async () => {
     try {
