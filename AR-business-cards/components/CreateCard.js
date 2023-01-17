@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-
+import ShowCardPreview from "./ShowCardPreview";
 export default function CreateCard({ currentUser }) {
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
@@ -76,23 +76,7 @@ export default function CreateCard({ currentUser }) {
           />
         </View>
         <Text style={styles.text}>Preview</Text>
-        <View
-          style={{
-            marginLeft: 30,
-            marginTop: 5,
-            marginBottom: 40,
-            alignItems: "center",
-            justifyContent: "flex-start",
-            height: 200,
-            width: 300,
-            overflow: "hidden",
-            borderWidth: 0.19,
-            backgroundColor: `${colour}`,
-          }}
-        >
-          <Text style={{ marginTop: 18 }}>{title}</Text>
-          <Text style={{ marginTop: 18 }}>{content}</Text>
-        </View>
+        <ShowCardPreview colour={colour} title={title} content={content} />
         <Button title="Create" onPress={handleSubmitPress}></Button>
       </ScrollView>
       <Button title="Back"></Button>

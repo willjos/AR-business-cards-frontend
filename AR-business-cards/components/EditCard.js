@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
+import ShowCardPreview from "./ShowCardPreview";
 
 export default function EditCard({ currentUser, route }) {
   const [title, setTitle] = useState("");
@@ -77,10 +78,8 @@ export default function EditCard({ currentUser, route }) {
             numberOfLines={4}
           />
         </View>
-        <View style={styles.doneAndPreview}>
-          <Button title="Preview"></Button>
-          <Button title="Submit" onPress={handleSubmitPress}></Button>
-        </View>
+        <ShowCardPreview colour={colour} title={title} content={content} />
+        <Button title="Submit" onPress={handleSubmitPress}></Button>
       </ScrollView>
       <Button title="Back"></Button>
     </View>
@@ -90,36 +89,29 @@ export default function EditCard({ currentUser, route }) {
 const styles = StyleSheet.create({
   titleBox: {
     marginTop: 5,
+    marginLeft: 30,
     marginBottom: 40,
     height: 80,
     width: 300,
     overflow: "hidden",
     borderRadius: 10,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#dddddd",
     padding: 20,
   },
   detailBox: {
+    marginLeft: 30,
     marginTop: 5,
     marginBottom: 40,
     height: 300,
     width: 300,
     overflow: "hidden",
     borderRadius: 10,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#dddddd",
     padding: 20,
   },
-
-  doneAndPreview: {
-    flex: 1,
-    justifyContent: "space-around",
-    alignItems: "space-around",
-    padding: 70,
-    flexDirection: "row",
-  },
-
   text: {
-    marginLeft: 10,
-    marginTop: 0.5,
+    marginLeft: 30,
+    marginTop: 10,
     fontSize: 16,
   },
 });
