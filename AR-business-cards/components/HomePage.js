@@ -1,34 +1,9 @@
-import { StyleSheet, View, Text, Button, TextInput } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { useState } from "react";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 export default function HomePage({ navigation, setCurrentUser }) {
-  const [viewFeature, setViewFeature] = useState(false);
-  const [viewCard, setViewCard] = useState(false);
-  const [viewQR, setViewQR] = useState(false);
   const [qrData, setQRData] = useState("QR Data");
 
-  function handleViewCardPress() {
-    setViewCard(true);
-    setViewFeature(true);
-  }
-
-  function handleViewQRPress() {
-    setViewQR(true);
-    setViewFeature(true);
-  }
-
-  // if (viewFeature) {
-  //   if (viewCard) {
-  //     return (
-  //       <>
-  //         <ArCardView />
-  //       </>
-  //     );
-  //   } else if (viewQR) {
-  //     return <QRScanner setQRData={setQRData} />;
-  //   }
-  // } else {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
@@ -58,7 +33,7 @@ export default function HomePage({ navigation, setCurrentUser }) {
           style={styles.text}
           title="Log Out"
           onPress={() => {
-            setCurrentUser(null);
+            setCurrentUser("");
           }}
         />
       </View>

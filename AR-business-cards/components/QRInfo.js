@@ -1,13 +1,9 @@
 import QRCode from "react-native-qrcode-svg";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
-import { useState } from "react";
-import CreateEdit from "./CreateEdit";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function QRInfo({ code, currentUser }) {
-  const [editPressed, setEditPressed] = useState(false);
-
+export default function QRInfo({ code, navigation }) {
   const handleEditPress = () => {
-    setEditPressed(!editPressed);
+    navigation.navigate("EditCard", { code });
   };
 
   return (
@@ -15,11 +11,7 @@ export default function QRInfo({ code, currentUser }) {
       <QRCode value={code.id.toString()} />
       <View style={styles.infoContainer}>
         <Text>{code.title.toString()}</Text>
-        {!editPressed ? (
-          <Button title="Edit" onPress={handleEditPress} />
-        ) : (
-          <CreateEdit currentUser={currentUser} id={code.id} isCreate={false} />
-        )}
+        <Button title="Edit" onPress={handleEditPress} />
       </View>
     </View>
   );

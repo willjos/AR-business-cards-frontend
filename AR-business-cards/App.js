@@ -1,19 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  ViroARScene,
-  ViroText,
-  ViroTrackingStateConstants,
-  ViroARSceneNavigator,
-} from "@viro-community/react-viro";
 import UserLoginPage from "./components/UserLoginPage";
 import HomePage from "./components/HomePage";
 import QRScanner from "./components/QRScanner";
 import QRGenerator from "./components/QRGenerator";
-import CreateEdit from "./components/CreateEdit";
+import CreateCard from "./components/CreateCard";
+import EditCard from "./components/EditCard";
 import ArCardView from "./components/ArCardView";
 
 export default function App() {
@@ -44,13 +37,10 @@ export default function App() {
               {(props) => <QRGenerator {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen name="CreateCard" options={{ title: `Make a card` }}>
-              {(props) => (
-                <CreateEdit
-                  {...props}
-                  currentUser={currentUser}
-                  isCreate={true}
-                />
-              )}
+              {(props) => <CreateCard {...props} currentUser={currentUser} />}
+            </Stack.Screen>
+            <Stack.Screen name="EditCard" options={{ title: `Edit your card` }}>
+              {(props) => <EditCard {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen
               name="ArCardView"
