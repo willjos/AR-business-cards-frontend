@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserLoginPage from "./components/UserLoginPage";
 import HomePage from "./components/HomePage";
 import QRScanner from "./components/QRScanner";
@@ -9,7 +10,7 @@ import QRGenerator from "./components/QRGenerator";
 import CreateCard from "./components/CreateCard";
 import EditCard from "./components/EditCard";
 import ArCardView from "./components/ArCardView";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import CardCollection from "./components/CardCollection";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -69,12 +70,21 @@ export default function App() {
             >
               {(props) => <QRGenerator {...props} currentUser={currentUser} />}
             </Stack.Screen>
+            <Stack.Screen
+              name="CardCollection"
+              options={{ title: `Previously Scanned Cards` }}
+            >
+              {(props) => (
+                <CardCollection {...props} currentUser={currentUser} />
+              )}
+            </Stack.Screen>
             <Stack.Screen name="CreateCard" options={{ title: `Make a card` }}>
               {(props) => <CreateCard {...props} currentUser={currentUser} />}
             </Stack.Screen>
             <Stack.Screen name="EditCard" options={{ title: `Edit your card` }}>
               {(props) => <EditCard {...props} currentUser={currentUser} />}
             </Stack.Screen>
+
             <Stack.Screen
               name="ArCardView"
               component={ArCardView}
