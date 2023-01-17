@@ -15,7 +15,6 @@ export default function CardCollection(currentUser, navigation) {
     { title: "test 4", colour: "yellow", content: "lorum ipsum" },
   ]);
   const handleOpenAR = (data) => {
-    console.log(data);
     setCurrentCardDetails(data);
     setOpenAr(true);
   };
