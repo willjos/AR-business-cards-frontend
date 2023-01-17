@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function CollectedCardInfo({ card, navigation, handleOpenAR }) {
+export default function CollectedCardInfo({ card, handleOpenAR }) {
   const handleViewPress = () => {
     console.log("navigate to AR");
   };
@@ -9,6 +9,8 @@ export default function CollectedCardInfo({ card, navigation, handleOpenAR }) {
     <View style={styles.CardContainer}>
       <View style={styles.infoContainer}>
         <Text>{card.title}</Text>
+        <Text>made by: {card.username} </Text>
+        <Text>Scanned at: {card.scan_timestamp}</Text>
         <Button
           title="View"
           onPress={() => {

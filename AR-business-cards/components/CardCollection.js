@@ -4,20 +4,34 @@ import CollectedCardInfo from "./CollectedCardInfo";
 
 import ArCardView from "./ArCardView";
 
-export default function CardCollection(currentUser, navigation) {
+export default function CardCollection({ currentUser }) {
   const [openAR, setOpenAr] = useState(false);
   const [currentCardDetails, setCurrentCardDetails] = useState({});
-
-  const [userCollection, setUserCollection] = useState([
-    { title: "test 1", colour: "red", content: "lorum ipsum" },
-    { title: "test 2", colour: "blue", content: "lorum ipsum" },
-    { title: "test 3", colour: "green", content: "lorum ipsum" },
-    { title: "test 4", colour: "yellow", content: "lorum ipsum" },
-  ]);
+  const [userCollection, setUserCollection] = useState([]);
   const handleOpenAR = (data) => {
     setCurrentCardDetails(data);
     setOpenAr(true);
   };
+
+  const getUserCollection = async () => {
+    const response = await fetch(
+      `https://ar-business-cards-backend.herokuapp.com/view-collection`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: currentUser }),
+      }
+    );
+
+    if (response.status == 200) {
+      const responseJSON = await response.json();
+      setUserCollection(responseJSON);
+    }
+  };
+
+  useEffect(() => {
+    getUserCollection();
+  }, []);
 
   return (
     <>
@@ -32,7 +46,6 @@ export default function CardCollection(currentUser, navigation) {
                   card={e}
                   key={key}
                   currentUser={currentUser}
-                  navigation={navigation}
                   handleOpenAR={handleOpenAR}
                 />
               ))}
