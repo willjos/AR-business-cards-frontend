@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import ShowCardPreview from "./ShowCardPreview";
+
 export default function CreateCard({ currentUser }) {
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
@@ -107,7 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#dddddd",
     padding: 20,
   },
-
   text: {
     marginLeft: 30,
     marginTop: 10,
