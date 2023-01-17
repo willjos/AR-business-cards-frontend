@@ -11,6 +11,7 @@ import ArCardView from "./components/ArCardView";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
+  const [qrData, setQRData] = useState("QR Data");
 
   return (
     <>
@@ -56,6 +57,12 @@ export default function App() {
               {(props) => (
                 <UserLoginPage {...props} setCurrentUser={setCurrentUser} />
               )}
+            </LoginStack.Screen>
+            <LoginStack.Screen
+              name="QRScanner"
+              options={{ title: `Scan a QR code` }}
+            >
+              {(props) => <QRScanner {...props} setQRData={setQRData} />}
             </LoginStack.Screen>
           </LoginStack.Navigator>
         </NavigationContainer>

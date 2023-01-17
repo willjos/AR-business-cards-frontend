@@ -28,7 +28,7 @@ export default function QRScanner({ route }) {
 
   const handleScanPress = () => {
     setScanned(false);
-    route.params.setQRData(text);
+    // route.params.setQRData(text);
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function QRScanner({ route }) {
         <ArCardView cardDetails={cardDetails} />
       ) : (
         <View style={styles.container}>
-          <View style={styles.barcodebox}>
+          <View style={styles.barcodeBox}>
             <BarCodeScanner
               onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
               style={{ height: 400, width: 400 }}
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  barcodebox: {
+  barcodeBox: {
     alignItems: "center",
     justifyContent: "center",
     height: 300,
