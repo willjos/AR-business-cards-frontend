@@ -59,9 +59,10 @@ export default function App() {
             </Stack.Screen>
             <Stack.Screen
               name="QRScanner"
-              component={QRScanner}
               options={{ title: `Scan a QR code` }}
-            />
+            >
+              {(props) => <QRScanner {...props} currentUser={currentUser} />}
+            </Stack.Screen>
             <Stack.Screen
               name="QRGenerator"
               options={{ title: `View your cards` }}
