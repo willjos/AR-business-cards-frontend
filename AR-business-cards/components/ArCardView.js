@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   ViroARScene,
@@ -8,10 +8,12 @@ import {
   ViroFlexView,
   ViroARTrackingTargets,
   ViroARImageMarker,
-  ViroBox,
+  ViroSpinner,
 } from "@viro-community/react-viro";
 
 export default ({ cardDetails }) => {
+  const [markerFound, setMarkerFound] = useState(false);
+
   function BusinessCardScene() {
     function onInitialized(state, reason) {
       console.log("Business Card", state, reason);
@@ -31,11 +33,15 @@ export default ({ cardDetails }) => {
     });
 
     const anchorFound = () => {
+      setMarkerFound(true);
       console.log("Anchor Found!");
     };
 
+    useEffect(() => {}, [markerFound]);
+
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
+        {!markerFound && <ViroSpinner position={[0, 0, -2]} type={"light"} />}
         <ViroARImageMarker target={"arMarker"} onAnchorFound={anchorFound}>
           <ViroFlexView
             position={[0, 0, -1.01]}
