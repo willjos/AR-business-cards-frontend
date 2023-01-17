@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
 import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
-export default function HomePage({ navigation, setCurrentUser }) {
+export default function HomePage({ navigation, handleUserStorage }) {
   const [viewFeature, setViewFeature] = useState(false);
   const [viewCard, setViewCard] = useState(false);
   const [viewQR, setViewQR] = useState(false);
@@ -47,7 +47,7 @@ export default function HomePage({ navigation, setCurrentUser }) {
           style={styles.text}
           title="Log Out"
           onPress={() => {
-            setCurrentUser(null);
+            handleUserStorage(null);
           }}
         />
       </View>
