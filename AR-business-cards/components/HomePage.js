@@ -1,22 +1,8 @@
-import { StyleSheet, View, Text, Button, TextInput } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { useState } from "react";
-import { clickProps } from "react-native-web/dist/cjs/modules/forwardedProps";
 
 export default function HomePage({ navigation, setCurrentUser }) {
-  const [viewFeature, setViewFeature] = useState(false);
-  const [viewCard, setViewCard] = useState(false);
-  const [viewQR, setViewQR] = useState(false);
   const [qrData, setQRData] = useState("QR Data");
-
-  function handleViewCardPress() {
-    setViewCard(true);
-    setViewFeature(true);
-  }
-
-  function handleViewQRPress() {
-    setViewQR(true);
-    setViewFeature(true);
-  }
 
   return (
     <View style={styles.container}>
@@ -39,7 +25,7 @@ export default function HomePage({ navigation, setCurrentUser }) {
         <Button
           style={styles.text}
           title="Create card"
-          onPress={() => navigation.navigate("EditCard")}
+          onPress={() => navigation.navigate("CreateCard")}
         />
       </View>
       <View style={styles.box}>
@@ -47,7 +33,7 @@ export default function HomePage({ navigation, setCurrentUser }) {
           style={styles.text}
           title="Log Out"
           onPress={() => {
-            setCurrentUser(null);
+            setCurrentUser("");
           }}
         />
       </View>

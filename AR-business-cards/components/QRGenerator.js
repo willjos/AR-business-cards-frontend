@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
-export default function QRGenerator({ currentUser }) {
+
+export default function QRGenerator({ currentUser, navigation }) {
   const [userCodes, setUserCodes] = useState([]);
   const handleQRCodes = async () => {
     try {
@@ -16,7 +17,6 @@ export default function QRGenerator({ currentUser }) {
         }
       );
       const responseJSON = await response.json();
-
       if (response.status === 200) {
         setUserCodes(responseJSON);
       } else {
@@ -35,7 +35,12 @@ export default function QRGenerator({ currentUser }) {
       {userCodes && (
         <>
           {userCodes.map((e, key) => (
-            <QRInfo code={e} key={key} />
+            <QRInfo
+              code={e}
+              key={key}
+              currentUser={currentUser}
+              navigation={navigation}
+            />
           ))}
         </>
       )}
