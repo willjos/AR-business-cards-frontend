@@ -9,8 +9,6 @@ import {
   ViroARTrackingTargets,
   ViroARImageMarker,
 } from "@viro-community/react-viro";
-// import iconLogo from "./assets/icon.png";
-import icon from "./icon.png";
 
 export default ({ cardDetails }) => {
   function BusinessCardScene() {
@@ -24,9 +22,9 @@ export default ({ cardDetails }) => {
     }
 
     ViroARTrackingTargets.createTargets({
-      iconLogo: {
-        source: require("./paracetamol.jpg"),
-        physicalWidth: 1.8,
+      arMarker: {
+        source: require("./AR_Marker.png"),
+        physicalWidth: 1,
         orientation: "Up",
       },
     });
@@ -37,7 +35,7 @@ export default ({ cardDetails }) => {
 
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
-        <ViroARImageMarker target={"iconLogo"} onAnchorFound={anchorFound}>
+        <ViroARImageMarker target={"arMarker"} onAnchorFound={anchorFound}>
           <ViroFlexView
             position={[0, 0, -1]}
             height={2}
