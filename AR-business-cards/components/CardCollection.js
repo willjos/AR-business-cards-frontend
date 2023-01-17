@@ -1,6 +1,7 @@
 import { ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import CollectedCardInfo from "./CollectedCardInfo";
+
 import ArCardView from "./ArCardView";
 
 export default function CardCollection(currentUser, navigation) {
