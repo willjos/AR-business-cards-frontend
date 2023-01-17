@@ -1,9 +1,7 @@
 import { StyleSheet, View, Button } from "react-native";
 import { useState } from "react";
 
-
 export default function HomePage({ navigation, handleUserStorage }) {
-
   const [qrData, setQRData] = useState("QR Data");
 
   return (
@@ -33,11 +31,16 @@ export default function HomePage({ navigation, handleUserStorage }) {
       <View style={styles.box}>
         <Button
           style={styles.text}
+          title="View Card collection"
+          onPress={() => navigation.navigate("CardCollection")}
+        />
+      </View>
+      <View style={styles.box}>
+        <Button
+          style={styles.text}
           title="Log Out"
           onPress={() => {
-
             handleUserStorage(null);
-
           }}
         />
       </View>
