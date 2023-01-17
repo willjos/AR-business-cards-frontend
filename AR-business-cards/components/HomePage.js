@@ -1,7 +1,9 @@
 import { StyleSheet, View, Button } from "react-native";
 import { useState } from "react";
 
-export default function HomePage({ navigation, setCurrentUser }) {
+
+export default function HomePage({ navigation, handleUserStorage }) {
+
   const [qrData, setQRData] = useState("QR Data");
 
   return (
@@ -33,7 +35,9 @@ export default function HomePage({ navigation, setCurrentUser }) {
           style={styles.text}
           title="Log Out"
           onPress={() => {
-            setCurrentUser("");
+
+            handleUserStorage(null);
+
           }}
         />
       </View>

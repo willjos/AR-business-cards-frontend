@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import UserLoginPage from "./components/UserLoginPage";
@@ -8,10 +9,40 @@ import QRGenerator from "./components/QRGenerator";
 import CreateCard from "./components/CreateCard";
 import EditCard from "./components/EditCard";
 import ArCardView from "./components/ArCardView";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [qrData, setQRData] = useState("QR Data");
+
+  const handleUserStorage = async (user) => {
+    try {
+      if (user !== null) {
+        await AsyncStorage.setItem("currentUser", user);
+        setCurrentUser(user);
+      } else {
+        await AsyncStorage.removeItem("currentUser");
+        setCurrentUser(user);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getUserFromStorage = async () => {
+    try {
+      const user = await AsyncStorage.getItem("currentUser");
+      if (user !== null) {
+        setCurrentUser(user);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserFromStorage();
+  }, []);
 
   return (
     <>
@@ -23,7 +54,7 @@ export default function App() {
               options={{ title: `Hello ${currentUser}` }}
             >
               {(props) => (
-                <HomePage {...props} setCurrentUser={setCurrentUser} />
+                <HomePage {...props} handleUserStorage={handleUserStorage} />
               )}
             </Stack.Screen>
             <Stack.Screen
@@ -55,7 +86,10 @@ export default function App() {
           <LoginStack.Navigator>
             <LoginStack.Screen name="Login" options={{ title: `Welcome` }}>
               {(props) => (
-                <UserLoginPage {...props} setCurrentUser={setCurrentUser} />
+                <UserLoginPage
+                  {...props}
+                  handleUserStorage={handleUserStorage}
+                />
               )}
             </LoginStack.Screen>
             <LoginStack.Screen

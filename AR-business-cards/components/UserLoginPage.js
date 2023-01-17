@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, Button, TextInput } from "react-native";
 import { useState } from "react";
 
 export default function UserLoginPage({
-  setCurrentUser,
+  handleUserStorage,
   navigation,
   setQRData,
 }) {
@@ -30,9 +30,9 @@ export default function UserLoginPage({
         body: JSON.stringify(data),
       }
     );
-    console.log(response);
+    console.log(response.json());
     if (response.status == 200) {
-      setCurrentUser(data.username);
+      handleUserStorage(data.username);
     } else {
       return alert("Access Denied");
     }
