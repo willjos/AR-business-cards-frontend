@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ArCardView from "./ArCardView";
 
-export default function QRScanner({ route }) {
+export default function QRScanner({ currentUser }) {
   const [scanned, setScanned] = useState(false);
   const [openAR, setOpenAR] = useState(false);
   const [cardDetails, setCardDetails] = useState({});
@@ -11,12 +11,15 @@ export default function QRScanner({ route }) {
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     const response = await fetch(
-      `https://ar-business-cards-backend.herokuapp.com/view-card/${data}`
+      `https://ar-business-cards-backend.herokuapp.com/view-card/${data}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: currentUser }),
+      }
     );
     if (response.status == 200) {
       const responseJSON = await response.json();
-      console.log(`Scan Successful: Barcode Type ${type} data ${data}`);
-      console.log(responseJSON);
       await setCardDetails(responseJSON[0]);
       setOpenAR(true);
     } else {
@@ -28,7 +31,6 @@ export default function QRScanner({ route }) {
 
   const handleScanPress = () => {
     setScanned(false);
-    // route.params.setQRData(text);
   };
 
   useEffect(() => {

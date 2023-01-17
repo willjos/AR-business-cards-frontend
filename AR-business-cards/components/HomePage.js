@@ -1,18 +1,13 @@
 import { StyleSheet, View, Button } from "react-native";
-import { useState } from "react";
-
 
 export default function HomePage({ navigation, handleUserStorage }) {
-
-  const [qrData, setQRData] = useState("QR Data");
-
   return (
     <View style={styles.container}>
       <View style={styles.box}>
         <Button
           style={styles.text}
           title="View Business Card"
-          onPress={() => navigation.navigate("QRScanner", { setQRData })}
+          onPress={() => navigation.navigate("QRScanner")}
         />
       </View>
 
@@ -35,9 +30,7 @@ export default function HomePage({ navigation, handleUserStorage }) {
           style={styles.text}
           title="Log Out"
           onPress={() => {
-
             handleUserStorage(null);
-
           }}
         />
       </View>
