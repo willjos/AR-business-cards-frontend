@@ -67,6 +67,7 @@ export default ({ cardDetails }) => {
             style={styles.CardTextStyle}
             width={4}
             height={1}
+            extrusionDepth={3}
             position={[-0.23, 0.01, -0.65]}
             rotation={[-90, 0, 0]}
           />
@@ -78,6 +79,7 @@ export default ({ cardDetails }) => {
             style={styles.CardTextStyle}
             width={5}
             height={3}
+            extrusionDepth={2.3}
             position={[0, 0.01, 0.25]}
             rotation={[-90, 0, 0]}
           />
