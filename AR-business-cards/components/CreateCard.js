@@ -15,14 +15,29 @@ export default function CreateCard({ currentUser }) {
   const [colour, setColour] = useState("");
   const [content, setContent] = useState("");
 
+  const [maxLenTitle, setMaxLenTitle] = useState(false);
+  const [maxLenContent, setMaxLenContent] = useState(false);
+
   const handleColourInput = (colour) => {
     setColour(colour);
   };
   const handleTitleInput = (title) => {
     setTitle(title);
+
+    if (title.length == 50) {
+      setMaxLenTitle(true);
+    } else {
+      setMaxLenTitle(false);
+    }
   };
   const handleContentInput = (content) => {
     setContent(content);
+
+    if (content.length == 200) {
+      setMaxLenContent(true);
+    } else {
+      setMaxLenContent(false);
+    }
   };
 
   const handleSubmitPress = async () => {
@@ -51,13 +66,22 @@ export default function CreateCard({ currentUser }) {
     <View>
       <ScrollView>
         <Text style={styles.text}>Title</Text>
-        <View style={styles.titleBox}>
-          <TextInput
-            onChangeText={(text) => handleTitleInput(text)}
-            placeholder="Enter Title..."
-            placeholderTextColor="grey"
-          />
+        <View style={styles.paddingView}>
+          <View style={styles.titleBox}>
+            <TextInput
+              onChangeText={(text) => handleTitleInput(text)}
+              placeholder="Enter Title..."
+              placeholderTextColor="grey"
+              maxLength={50}
+            />
+          </View>
+          {maxLenTitle && (
+            <Text style={styles.warningText}>
+              Max Length Reached. Cannot enter any more characters.
+            </Text>
+          )}
         </View>
+
         <Text style={styles.text}>Colour</Text>
         <View style={styles.colourBox}>
           <ColorPicker
@@ -69,15 +93,23 @@ export default function CreateCard({ currentUser }) {
           />
         </View>
         <Text style={styles.text}>Description</Text>
-        <View style={styles.detailBox}>
-          <TextInput
-            onChangeText={(text) => handleContentInput(text)}
-            style={{ padding: 10 }}
-            placeholder="Enter content.."
-            placeholderTextColor="grey"
-            multiline={true}
-            numberOfLines={4}
-          />
+        <View style={styles.paddingView}>
+          <View style={styles.detailBox}>
+            <TextInput
+              onChangeText={(text) => handleContentInput(text)}
+              style={{ padding: 10 }}
+              placeholder="Enter content.."
+              placeholderTextColor="grey"
+              multiline={true}
+              numberOfLines={4}
+              maxLength={200}
+            />
+          </View>
+          {maxLenContent && (
+            <Text style={styles.warningText}>
+              Max Length Reached. Cannot enter any more characters.
+            </Text>
+          )}
         </View>
         <Text style={styles.text}>Preview</Text>
         <ShowCardPreview colour={colour} title={title} content={content} />
@@ -91,7 +123,7 @@ const styles = StyleSheet.create({
   titleBox: {
     marginTop: 5,
     marginLeft: 30,
-    marginBottom: 40,
+    marginBottom: 0,
     height: 80,
     width: 300,
     overflow: "hidden",
@@ -107,12 +139,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderRadius: 10,
     backgroundColor: "#F9F9F9",
-    padding: 20,
   },
   detailBox: {
     marginLeft: 30,
     marginTop: 5,
-    marginBottom: 40,
     height: 300,
     width: 300,
     overflow: "hidden",
@@ -124,5 +154,15 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 10,
     fontSize: 16,
+  },
+  warningText: {
+    marginLeft: 30,
+    marginTop: 1,
+    fontSize: 13,
+    color: "red",
+    maxWidth: 300,
+  },
+  paddingView: {
+    marginBottom: 40,
   },
 });
