@@ -15,7 +15,7 @@ export default function QRScanner({ currentUser, navigation }) {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: currentUser }),
+        body: JSON.stringify({ username: currentUser ? currentUser : "" }),
       }
     );
     if (response.status == 200) {
