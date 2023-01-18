@@ -10,7 +10,7 @@ export default function QRInfo({ card, navigation, handleOpenAR }) {
     <View style={styles.QRContainer}>
       <QRCode value={code.id} />
       <View style={styles.infoContainer}>
-        <Text>{code.title}</Text>
+        <Text>{card.title}</Text>
         <Text>{`Scanned ${card.count} times`}</Text>
         <Button title="Edit" onPress={handleEditPress} />
         <Button
