@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import ShowCardPreview from "./ShowCardPreview";
+import ColorPicker from "react-native-wheel-color-picker";
 
 export default function EditCard({ currentUser, route }) {
   const [title, setTitle] = useState("");
@@ -58,13 +59,14 @@ export default function EditCard({ currentUser, route }) {
             placeholderTextColor="grey"
           />
         </View>
-
         <Text style={styles.text}>Colour</Text>
-        <View style={styles.titleBox}>
-          <TextInput
-            onChangeText={(text) => handleColourInput(text)}
-            placeholder="Enter Hex code..."
-            placeholderTextColor="grey"
+        <View style={styles.colourBox}>
+          <ColorPicker
+            onColorChange={handleColourInput}
+            thumbSize={50}
+            sliderSize={30}
+            gapSize={10}
+            noSnap={true}
           />
         </View>
         <Text style={styles.text}>Description</Text>
@@ -81,7 +83,6 @@ export default function EditCard({ currentUser, route }) {
         <ShowCardPreview colour={colour} title={title} content={content} />
         <Button title="Submit" onPress={handleSubmitPress}></Button>
       </ScrollView>
-      <Button title="Back"></Button>
     </View>
   );
 }
@@ -96,6 +97,16 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderRadius: 10,
     backgroundColor: "#dddddd",
+    padding: 20,
+  },
+  colourBox: {
+    marginTop: 5,
+    marginBottom: 15,
+    height: 310,
+    width: 350,
+    overflow: "hidden",
+    borderRadius: 10,
+    backgroundColor: "#F9F9F9",
     padding: 20,
   },
   detailBox: {
