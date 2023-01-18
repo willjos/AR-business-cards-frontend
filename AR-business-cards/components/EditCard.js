@@ -14,7 +14,7 @@ export default function EditCard({ currentUser, route }) {
   const [title, setTitle] = useState("");
   const [colour, setColour] = useState("");
   const [content, setContent] = useState("");
-  const id = route.params.code.id;
+  const id = route.params.card.id;
 
   const handleColourInput = (colour) => {
     setColour(colour);

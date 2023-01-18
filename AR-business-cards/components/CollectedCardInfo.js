@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function CollectedCardInfo({ card, handleOpenAR }) {
+export default function CollectedCardInfo({ card, handleOpenAR, navigation }) {
   return (
     <View style={styles.CardContainer}>
       <View style={styles.infoContainer}>

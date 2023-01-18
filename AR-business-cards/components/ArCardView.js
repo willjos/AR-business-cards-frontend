@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import {
   ViroARScene,
   ViroText,
@@ -13,7 +13,6 @@ import {
 
 export default ({ cardDetails }) => {
   const [markerFound, setMarkerFound] = useState(false);
-
   function BusinessCardScene() {
     function onInitialized(state, reason) {
       console.log("Business Card", state, reason);
@@ -101,7 +100,6 @@ export default ({ cardDetails }) => {
 var styles = StyleSheet.create({
   f1: { flex: 1, justifyContent: "space-evenly" },
   CardTextStyle: {
-    fontFamily: "Arial",
     fontSize: 30,
     color: "#000000",
     textAlignVertical: "center",
