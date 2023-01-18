@@ -1,17 +1,24 @@
 import QRCode from "react-native-qrcode-svg";
 import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function QRInfo({ code, navigation }) {
+export default function QRInfo({ card, navigation, handleOpenAR }) {
   const handleEditPress = () => {
-    navigation.navigate("EditCard", { code });
+    navigation.navigate("EditCard", { card });
   };
 
   return (
     <View style={styles.QRContainer}>
-      <QRCode value={code.id.toString()} />
+      <QRCode value={code.id} />
       <View style={styles.infoContainer}>
-        <Text>{code.title.toString()}</Text>
+        <Text>{code.title}</Text>
+        <Text>{`Scanned ${card.count} times`}</Text>
         <Button title="Edit" onPress={handleEditPress} />
+        <Button
+          title="View"
+          onPress={() => {
+            handleOpenAR(card);
+          }}
+        />
       </View>
     </View>
   );
