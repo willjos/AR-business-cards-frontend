@@ -96,7 +96,7 @@ export default function App() {
           <LoginStack.Navigator>
             <LoginStack.Screen
               name="Login"
-              options={{ title: `Welcome to ARCardView` }}
+              options={{ title: `Welcome to cARds` }}
             >
               {(props) => (
                 <UserLoginPage
