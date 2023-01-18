@@ -1,9 +1,18 @@
 import { ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
+import ArCardView from "./ArCardView";
 
 export default function QRGenerator({ currentUser, navigation }) {
-  const [userCodes, setUserCodes] = useState([]);
+  const [userCards, setUserCards] = useState([]);
+  const [openAR, setOpenAr] = useState(false);
+  const [currentCardDetails, setCurrentCardDetails] = useState({});
+
+  const handleOpenAR = (data) => {
+    setCurrentCardDetails(data);
+    setOpenAr(true);
+  };
+
   const handleQRCodes = async () => {
     try {
       const response = await fetch(
@@ -18,7 +27,7 @@ export default function QRGenerator({ currentUser, navigation }) {
       );
       const responseJSON = await response.json();
       if (response.status === 200) {
-        setUserCodes(responseJSON);
+        setUserCards(responseJSON);
       } else {
         alert(`error ${response.status}`);
       }
@@ -31,19 +40,26 @@ export default function QRGenerator({ currentUser, navigation }) {
     handleQRCodes();
   }, []);
   return (
-    <ScrollView>
-      {userCodes && (
-        <>
-          {userCodes.map((e, key) => (
-            <QRInfo
-              code={e}
-              key={key}
-              currentUser={currentUser}
-              navigation={navigation}
-            />
-          ))}
-        </>
+    <>
+      {openAR ? (
+        <ArCardView cardDetails={currentCardDetails} />
+      ) : (
+        <ScrollView>
+          {userCards && (
+            <>
+              {userCards.map((e, key) => (
+                <QRInfo
+                  card={e}
+                  key={key}
+                  currentUser={currentUser}
+                  navigation={navigation}
+                  handleOpenAR={handleOpenAR}
+                />
+              ))}
+            </>
+          )}
+        </ScrollView>
       )}
-    </ScrollView>
+    </>
   );
 }
