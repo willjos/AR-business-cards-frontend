@@ -78,7 +78,7 @@ export default ({ cardDetails }) => {
             style={styles.CardTextStyle}
             width={5}
             height={3}
-            position={[-0.3, 0.01, 0]}
+            position={[0, 0.01, 0.25]}
             rotation={[-90, 0, 0]}
           />
         </ViroARImageMarker>
