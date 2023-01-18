@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   ViroARScene,
@@ -8,9 +8,12 @@ import {
   ViroFlexView,
   ViroARTrackingTargets,
   ViroARImageMarker,
+  ViroSpinner,
 } from "@viro-community/react-viro";
 
 export default ({ cardDetails }) => {
+  const [markerFound, setMarkerFound] = useState(false);
+
   function BusinessCardScene() {
     function onInitialized(state, reason) {
       console.log("Business Card", state, reason);
@@ -30,34 +33,56 @@ export default ({ cardDetails }) => {
     });
 
     const anchorFound = () => {
+      setMarkerFound(true);
       console.log("Anchor Found!");
     };
 
+    useEffect(() => {}, [markerFound]);
+
     return (
       <ViroARScene onTrackingUpdated={onInitialized}>
+        {!markerFound && <ViroSpinner position={[0, 0, -2]} type={"light"} />}
         <ViroARImageMarker target={"arMarker"} onAnchorFound={anchorFound}>
           <ViroFlexView
-            position={[0, 0, -1]}
+            position={[0, -0.01, 0]}
+            rotation={[-90, 0, 0]}
+            height={2.1}
+            width={3.1}
+            backgroundColor={"#FF7000"}
+            style={styles.f1}
+          ></ViroFlexView>
+          <ViroFlexView
+            position={[0, 0, 0]}
+            rotation={[-90, 0, 0]}
             height={2}
             width={3}
             backgroundColor={cardDetails.colour}
             style={styles.f1}
-          >
-            <ViroText
-              text={cardDetails.title}
-              textClipMode="None"
-              scale={[0.5, 0.5, 0.5]}
-              textLineBreakMode="CharWrap"
-              style={styles.CardTextStyle}
-            />
-            <ViroText
-              text={cardDetails.content}
-              textClipMode="None"
-              scale={[0.5, 0.5, 0.5]}
-              textLineBreakMode="CharWrap"
-              style={styles.CardTextStyle}
-            />
-          </ViroFlexView>
+          ></ViroFlexView>
+          <ViroText
+            text={cardDetails.title}
+            textClipMode="ClipToBounds"
+            scale={[0.6, 0.6, 0.6]}
+            textLineBreakMode="CharWrap"
+            style={styles.CardTextStyle}
+            width={4}
+            height={1}
+            extrusionDepth={3}
+            position={[-0.23, 0.01, -0.65]}
+            rotation={[-90, 0, 0]}
+          />
+          <ViroText
+            text={cardDetails.content}
+            textClipMode="ClipToBounds"
+            scale={[0.4, 0.4, 0.4]}
+            textLineBreakMode="CharWrap"
+            style={styles.CardTextStyle}
+            width={5}
+            height={3}
+            extrusionDepth={2.3}
+            position={[0, 0.01, 0.25]}
+            rotation={[-90, 0, 0]}
+          />
         </ViroARImageMarker>
       </ViroARScene>
     );
@@ -80,6 +105,6 @@ var styles = StyleSheet.create({
     fontSize: 30,
     color: "#000000",
     textAlignVertical: "center",
-    textAlign: "center",
+    textAlign: "left",
   },
 });
