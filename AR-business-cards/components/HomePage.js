@@ -51,7 +51,7 @@ export default function HomePage({ navigation, handleUserStorage }) {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 70,

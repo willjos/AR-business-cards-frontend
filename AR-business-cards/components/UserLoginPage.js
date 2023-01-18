@@ -20,6 +20,7 @@ export default function UserLoginPage({
     setLoginButtonRender(false);
     setCreateAccountButtonRender(true);
   };
+
   const handleSubmitPress = async (endpoint, username, password) => {
     const data = { username, password };
     const response = await fetch(
@@ -47,10 +48,15 @@ export default function UserLoginPage({
   };
 
   return (
-    <View>
-      <Text>Let's see Paul Allen's card</Text>
+    <View style={styles.container}>
       {loginButtonRender ? (
-        <Button title="Log In" onPress={handleLoginPress} />
+        <View style={styles.box}>
+          <Button
+            style={styles.text}
+            title="Log In"
+            onPress={handleLoginPress}
+          />
+        </View>
       ) : (
         <View>
           <Text>Log in to your existing account</Text>
@@ -78,7 +84,13 @@ export default function UserLoginPage({
         </View>
       )}
       {createAccountButtonRender ? (
-        <Button title="Create Account" onPress={handleCreateAccountPress} />
+        <View style={styles.box}>
+          <Button
+            style={styles.text}
+            title="Create Account"
+            onPress={handleCreateAccountPress}
+          />
+        </View>
       ) : (
         <View>
           <Text>Register an account with us</Text>
@@ -111,6 +123,7 @@ export default function UserLoginPage({
       )}
       <View style={styles.box}>
         <Button
+          style={styles.text}
           title="View Business Card"
           onPress={() => navigation.navigate("QRScanner", { setQRData })}
         />
@@ -125,6 +138,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    marginLeft: 0,
+    marginTop: 10,
+    fontSize: 16,
+  },
+  box: {
+    marginTop: 5,
+    marginBottom: 20,
+    height: 80,
+    width: 300,
+    padding: 20,
   },
   input: {
     borderWidth: 1,
