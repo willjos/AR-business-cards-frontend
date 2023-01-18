@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
 import ArCardView from "./ArCardView";
@@ -26,6 +26,7 @@ export default function QRGenerator({ currentUser, navigation }) {
         }
       );
       const responseJSON = await response.json();
+
       if (response.status === 200) {
         setUserCards(responseJSON);
       } else {
@@ -39,6 +40,18 @@ export default function QRGenerator({ currentUser, navigation }) {
   useEffect(() => {
     handleQRCodes();
   }, []);
+
+  useEffect(() => {
+    if (openAR === true) {
+      navigation.setOptions({
+        title: "Ar View",
+      });
+    } else if (openAR === false) {
+      navigation.setOptions({
+        title: "View your cards",
+      });
+    }
+  }, [openAR]);
   return (
     <>
       {openAR ? (

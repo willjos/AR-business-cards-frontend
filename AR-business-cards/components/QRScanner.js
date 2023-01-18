@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ArCardView from "./ArCardView";
 
-export default function QRScanner({ currentUser }) {
+export default function QRScanner({ currentUser, navigation }) {
   const [scanned, setScanned] = useState(false);
   const [openAR, setOpenAR] = useState(false);
-  const [cardDetails, setCardDetails] = useState({});
+  const [cardDetails, setCardDetails] = useState(undefined);
 
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
@@ -36,6 +36,18 @@ export default function QRScanner({ currentUser }) {
   useEffect(() => {
     console.log("scanned" + scanned);
   }, [scanned]);
+
+  useEffect(() => {
+    if (openAR === true) {
+      navigation.setOptions({
+        title: "Ar View",
+      });
+    } else if (openAR === false) {
+      navigation.setOptions({
+        title: "Scan a QR code",
+      });
+    }
+  }, [openAR]);
 
   return (
     <>
