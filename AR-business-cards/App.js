@@ -84,18 +84,20 @@ export default function App() {
             <Stack.Screen name="EditCard" options={{ title: `Edit your card` }}>
               {(props) => <EditCard {...props} currentUser={currentUser} />}
             </Stack.Screen>
-
             <Stack.Screen
               name="ArCardView"
               component={ArCardView}
-              options={{ title: `Ar card view` }}
+              options={{ title: `AR Card View` }}
             />
           </Stack.Navigator>
         </NavigationContainer>
       ) : (
         <NavigationContainer>
           <LoginStack.Navigator>
-            <LoginStack.Screen name="Login" options={{ title: `Welcome` }}>
+            <LoginStack.Screen
+              name="Login"
+              options={{ title: `Welcome to ARCardView` }}
+            >
               {(props) => (
                 <UserLoginPage
                   {...props}
