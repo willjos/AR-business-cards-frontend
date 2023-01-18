@@ -44,14 +44,16 @@ export default ({ cardDetails }) => {
         {!markerFound && <ViroSpinner position={[0, 0, -2]} type={"light"} />}
         <ViroARImageMarker target={"arMarker"} onAnchorFound={anchorFound}>
           <ViroFlexView
-            position={[0, 0, -1.01]}
+            position={[0, -0.01, 0]}
+            rotation={[-90, 0, 0]}
             height={2.1}
             width={3.1}
             backgroundColor={"#FF7000"}
             style={styles.f1}
           ></ViroFlexView>
           <ViroFlexView
-            position={[0, 0, -1]}
+            position={[0, 0, 0]}
+            rotation={[-90, 0, 0]}
             height={2}
             width={3}
             backgroundColor={cardDetails.colour}
@@ -59,21 +61,25 @@ export default ({ cardDetails }) => {
           ></ViroFlexView>
           <ViroText
             text={cardDetails.title}
-            textClipMode="None"
+            textClipMode="ClipToBounds"
             scale={[0.6, 0.6, 0.6]}
             textLineBreakMode="CharWrap"
             style={styles.CardTextStyle}
-            width={3}
-            position={[-0.2, 0.6, -0.9]}
+            width={4}
+            height={1}
+            position={[-0.23, 0.01, -0.65]}
+            rotation={[-90, 0, 0]}
           />
           <ViroText
             text={cardDetails.content}
-            textClipMode="None"
+            textClipMode="ClipToBounds"
             scale={[0.4, 0.4, 0.4]}
             textLineBreakMode="CharWrap"
             style={styles.CardTextStyle}
-            width={3}
-            position={[-0.2, 0, -0.9]}
+            width={5}
+            height={3}
+            position={[-0.3, 0.01, 0]}
+            rotation={[-90, 0, 0]}
           />
         </ViroARImageMarker>
       </ViroARScene>
