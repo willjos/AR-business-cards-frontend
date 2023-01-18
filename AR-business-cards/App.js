@@ -49,7 +49,17 @@ export default function App() {
     <>
       {currentUser ? (
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#FCA311",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          >
             <Stack.Screen
               name="Home"
               options={{ title: `Hello ${currentUser}` }}
@@ -93,10 +103,22 @@ export default function App() {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <LoginStack.Navigator>
+          <LoginStack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#FCA311",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          >
             <LoginStack.Screen
               name="Login"
-              options={{ title: `Let's see Paul Allen's cARd.` }}
+              options={{
+                title: `Let's see Paul Allen's cARd.`,
+              }}
             >
               {(props) => (
                 <UserLoginPage

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Button, TextInput } from "react-native";
+import { StyleSheet, View, Text, Pressable, TextInput } from "react-native";
 import { useState } from "react";
 
 export default function UserLoginPage({
@@ -51,11 +51,9 @@ export default function UserLoginPage({
     <View style={styles.container}>
       {loginButtonRender ? (
         <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="Log In"
-            onPress={handleLoginPress}
-          />
+          <Pressable onPress={handleLoginPress} style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+          </Pressable>
         </View>
       ) : (
         <View>
@@ -75,25 +73,29 @@ export default function UserLoginPage({
               handleInputChange(setPasswordLoginInput, text)
             }
           />
-          <Button
-            title="Submit"
-            onPress={() =>
-              handleSubmitPress("login", usernameLoginInput, passwordLoginInput)
-            }
-          />
+          <Pressable
+            style={styles.button}
+            onPress={() => {
+              handleSubmitPress(
+                "login",
+                usernameLoginInput,
+                passwordLoginInput
+              );
+            }}
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </Pressable>
         </View>
       )}
       {createAccountButtonRender ? (
         <View style={styles.box}>
-          <Button
-            style={styles.text}
-            title="Create Account"
-            onPress={handleCreateAccountPress}
-          />
+          <Pressable style={styles.button} onPress={handleCreateAccountPress}>
+            <Text style={styles.buttonText}>Create Account</Text>
+          </Pressable>
         </View>
       ) : (
         <View>
-          <Text>Register an account with us</Text>
+          <Text style={styles.text}>Register an account with us</Text>
           <TextInput
             style={styles.input}
             placeholder="Username"
@@ -109,8 +111,8 @@ export default function UserLoginPage({
               handleInputChange(setPasswordCreateAccountInput, text)
             }
           />
-          <Button
-            title="Submit"
+          <Pressable
+            style={styles.button}
             onPress={() =>
               handleSubmitPress(
                 "register-user",
@@ -118,15 +120,20 @@ export default function UserLoginPage({
                 passwordCreateAccountInput
               )
             }
-          />
+          >
+            <Text style={styles.buttonText}>Submit</Text>
+          </Pressable>
         </View>
       )}
       <View style={styles.box}>
-        <Button
-          style={styles.text}
-          title="View Business Card"
-          onPress={() => navigation.navigate("QRScanner", { setQRData })}
-        />
+        <Pressable
+          style={styles.ViewBusinessCard}
+          onPress={() => {
+            navigation.navigate("QRScanner", { setQRData });
+          }}
+        >
+          <Text style={styles.buttonText}>View Business Card </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -135,27 +142,50 @@ export default function UserLoginPage({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    marginLeft: 0,
-    marginTop: 10,
-    fontSize: 16,
   },
   box: {
     marginTop: 5,
     marginBottom: 20,
-    height: 80,
+    height: 100,
     width: 300,
     padding: 20,
   },
   input: {
     borderWidth: 1,
-    borderColor: "#777",
+    borderColor: "#252422",
+    borderStyle: "solid",
     padding: 8,
     margin: 10,
     width: 200,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 20,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#FCA311",
+    borderColor: "#14213D",
+    borderWidth: 1.5,
+  },
+  buttonText: {
+    marginLeft: 0,
+    color: "#FFFCF2",
+  },
+
+  ViewBusinessCard: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 20,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "#FCA311",
+    borderColor: "#14213D",
+    borderWidth: 1.5,
   },
 });
