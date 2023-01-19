@@ -63,124 +63,128 @@ export default function UserLoginPage({
   }
 
   return (
-    <View style={styles.container}>
-      {loginButtonRender ? (
-        <View>
+    <ScrollView>
+      <View style={styles.container}>
+        {loginButtonRender ? (
+          <View>
+            <Pressable
+              onPress={handleLoginPress}
+              style={({ pressed }) => [
+                styles.button,
+                pressed && { backgroundColor: "#FCA311" },
+              ]}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </Pressable>
+            <View style={styles.SubmitHairline}></View>
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.loginText}>
+              Log in to your existing account
+            </Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              onChangeText={(text) =>
+                handleInputChange(setUsernameLoginInput, text)
+              }
+            />
+            <TextInput
+              secureTextEntry={true}
+              style={styles.input}
+              placeholder="Password"
+              onChangeText={(text) =>
+                handleInputChange(setPasswordLoginInput, text)
+              }
+            />
+            <Pressable
+              style={({ pressed }) => [
+                styles.button,
+                pressed && { backgroundColor: "#FCA311" },
+              ]}
+              onPress={() => {
+                handleSubmitPress(
+                  "login",
+                  usernameLoginInput,
+                  passwordLoginInput
+                );
+              }}
+            >
+              <Text style={styles.buttonText}>Submit</Text>
+            </Pressable>
+            <View style={styles.SubmitHairline}></View>
+          </View>
+        )}
+        {createAccountButtonRender ? (
+          <View>
+            <Pressable
+              style={({ pressed }) => [
+                styles.button,
+                pressed && { backgroundColor: "#FCA311" },
+              ]}
+              onPress={handleCreateAccountPress}
+            >
+              <Text style={styles.buttonText}>Create Account</Text>
+            </Pressable>
+            <View style={styles.CreateAccountAndLoginHairline}></View>
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.loginText}>Register an account with us</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Username"
+              onChangeText={(text) =>
+                handleInputChange(setUsernameCreateAccountInput, text)
+              }
+            />
+            <TextInput
+              secureTextEntry={true}
+              style={styles.input}
+              placeholder="Password"
+              onChangeText={(text) =>
+                handleInputChange(setPasswordCreateAccountInput, text)
+              }
+            />
+            <Pressable
+              style={({ pressed }) => [
+                styles.button,
+                pressed && { backgroundColor: "#FCA311" },
+              ]}
+              onPress={() =>
+                handleSubmitPress(
+                  "register-user",
+                  usernameCreateAccountInput,
+                  passwordCreateAccountInput
+                )
+              }
+            >
+              <Text style={styles.buttonText}>Submit</Text>
+            </Pressable>
+            <View style={styles.SubmitHairline}></View>
+          </View>
+        )}
+        <View style={styles.BusinessCardContainer}>
+          <Text style={styles.noAccountMessage}>No account?</Text>
+          <Text style={styles.noAccountMessageBottom}>
+            Just press the button below and scan a valid qr code.
+          </Text>
           <Pressable
-            onPress={handleLoginPress}
             style={({ pressed }) => [
               styles.button,
-              pressed && { backgroundColor: "#FCA311" },
-            ]}
-          >
-            <Text style={styles.buttonText}>Login</Text>
-          </Pressable>
-          <View style={styles.SubmitHairline}></View>
-        </View>
-      ) : (
-        <View>
-          <Text style={styles.loginText}>Log in to your existing account</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            onChangeText={(text) =>
-              handleInputChange(setUsernameLoginInput, text)
-            }
-          />
-          <TextInput
-            secureTextEntry={true}
-            style={styles.input}
-            placeholder="Password"
-            onChangeText={(text) =>
-              handleInputChange(setPasswordLoginInput, text)
-            }
-          />
-          <Pressable
-            style={({ pressed }) => [
-              styles.button,
-              pressed && { backgroundColor: "#FCA311" },
+              pressed && { backgroundColor: "#FCA311", borderColor: "#14213D" },
             ]}
             onPress={() => {
-              handleSubmitPress(
-                "login",
-                usernameLoginInput,
-                passwordLoginInput
-              );
+              navigation.navigate("QRScanner", { setQRData });
             }}
           >
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>View Business Card </Text>
           </Pressable>
-          <View style={styles.SubmitHairline}></View>
+          <View style={styles.ViewBusinessCardHairline}></View>
         </View>
-      )}
-      {createAccountButtonRender ? (
-        <View>
-          <Pressable
-            style={({ pressed }) => [
-              styles.button,
-              pressed && { backgroundColor: "#FCA311" },
-            ]}
-            onPress={handleCreateAccountPress}
-          >
-            <Text style={styles.buttonText}>Create Account</Text>
-          </Pressable>
-          <View style={styles.CreateAccountAndLoginHairline}></View>
-        </View>
-      ) : (
-        <View>
-          <Text style={styles.loginText}>Register an account with us</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Username"
-            onChangeText={(text) =>
-              handleInputChange(setUsernameCreateAccountInput, text)
-            }
-          />
-          <TextInput
-            secureTextEntry={true}
-            style={styles.input}
-            placeholder="Password"
-            onChangeText={(text) =>
-              handleInputChange(setPasswordCreateAccountInput, text)
-            }
-          />
-          <Pressable
-            style={({ pressed }) => [
-              styles.button,
-              pressed && { backgroundColor: "#FCA311" },
-            ]}
-            onPress={() =>
-              handleSubmitPress(
-                "register-user",
-                usernameCreateAccountInput,
-                passwordCreateAccountInput
-              )
-            }
-          >
-            <Text style={styles.buttonText}>Submit</Text>
-          </Pressable>
-          <View style={styles.SubmitHairline}></View>
-        </View>
-      )}
-      <View style={styles.BusinessCardContainer}>
-        <Text style={styles.noAccountMessage}>No account?</Text>
-        <Text style={styles.noAccountMessageBottom}>
-          Just press the button below and scan a valid qr code.
-        </Text>
-        <Pressable
-          style={({ pressed }) => [
-            styles.button,
-            pressed && { backgroundColor: "#FCA311", borderColor: "#14213D" },
-          ]}
-          onPress={() => {
-            navigation.navigate("QRScanner", { setQRData });
-          }}
-        >
-          <Text style={styles.buttonText}>View Business Card </Text>
-        </Pressable>
-        <View style={styles.ViewBusinessCardHairline}></View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -190,6 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
+    height: 750,
   },
 
   input: {
@@ -229,7 +234,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     color: "#14213D",
     fontSize: 30,
-    width: 140,
+    width: 200,
     fontFamily: "PlusJakartaSans",
   },
   noAccountMessageBottom: {
