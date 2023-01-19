@@ -90,6 +90,7 @@ export default function UserLoginPage({
           <Button
             style={styles.text}
             title="Create Account"
+            testID="Create-Account-Button"
             onPress={handleCreateAccountPress}
           />
         </View>
@@ -127,6 +128,7 @@ export default function UserLoginPage({
         <Button
           style={styles.text}
           title="View Business Card"
+          testID="View-Card-Button"
           onPress={() => navigation.navigate("QRScanner", { setQRData })}
         />
       </View>
