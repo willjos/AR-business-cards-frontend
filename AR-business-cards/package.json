@@ -5,7 +5,8 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "test": "jest"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.2",
@@ -27,7 +28,8 @@
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.9",
     "react-native-wheel-color-picker": "^1.2.0",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
