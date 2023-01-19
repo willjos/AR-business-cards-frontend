@@ -1,11 +1,22 @@
-import { StyleSheet, View, Text, Pressable, TextInput } from "react-native";
-import { useState } from "react";
-
+import {
+  StyleSheet,
+  View,
+  Text,
+  Pressable,
+  TextInput,
+  ScrollView,
+} from "react-native";
+import { useEffect, useState } from "react";
+import { useFonts } from "expo-font";
 export default function UserLoginPage({
   handleUserStorage,
   navigation,
   setQRData,
 }) {
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans: require("../assets/Fonts/PlusJakartaSans.ttf"),
+  });
+
   const [loginButtonRender, setLoginButtonRender] = useState(true);
   const [createAccountButtonRender, setCreateAccountButtonRender] =
     useState(true);
@@ -47,17 +58,28 @@ export default function UserLoginPage({
     setState(value);
   };
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       {loginButtonRender ? (
-        <View style={styles.box}>
-          <Pressable onPress={handleLoginPress} style={styles.button}>
+        <View>
+          <Pressable
+            onPress={handleLoginPress}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && { backgroundColor: "#FCA311" },
+            ]}
+          >
             <Text style={styles.buttonText}>Login</Text>
           </Pressable>
+          <View style={styles.SubmitHairline}></View>
         </View>
       ) : (
         <View>
-          <Text>Log in to your existing account</Text>
+          <Text style={styles.loginText}>Log in to your existing account</Text>
           <TextInput
             style={styles.input}
             placeholder="Username"
@@ -74,7 +96,10 @@ export default function UserLoginPage({
             }
           />
           <Pressable
-            style={styles.button}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && { backgroundColor: "#FCA311" },
+            ]}
             onPress={() => {
               handleSubmitPress(
                 "login",
@@ -85,17 +110,25 @@ export default function UserLoginPage({
           >
             <Text style={styles.buttonText}>Submit</Text>
           </Pressable>
+          <View style={styles.SubmitHairline}></View>
         </View>
       )}
       {createAccountButtonRender ? (
-        <View style={styles.box}>
-          <Pressable style={styles.button} onPress={handleCreateAccountPress}>
+        <View>
+          <Pressable
+            style={({ pressed }) => [
+              styles.button,
+              pressed && { backgroundColor: "#FCA311" },
+            ]}
+            onPress={handleCreateAccountPress}
+          >
             <Text style={styles.buttonText}>Create Account</Text>
           </Pressable>
+          <View style={styles.CreateAccountAndLoginHairline}></View>
         </View>
       ) : (
         <View>
-          <Text style={styles.text}>Register an account with us</Text>
+          <Text style={styles.loginText}>Register an account with us</Text>
           <TextInput
             style={styles.input}
             placeholder="Username"
@@ -112,7 +145,10 @@ export default function UserLoginPage({
             }
           />
           <Pressable
-            style={styles.button}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && { backgroundColor: "#FCA311" },
+            ]}
             onPress={() =>
               handleSubmitPress(
                 "register-user",
@@ -123,17 +159,26 @@ export default function UserLoginPage({
           >
             <Text style={styles.buttonText}>Submit</Text>
           </Pressable>
+          <View style={styles.SubmitHairline}></View>
         </View>
       )}
-      <View style={styles.box}>
+      <View style={styles.BusinessCardContainer}>
+        <Text style={styles.noAccountMessage}>No account?</Text>
+        <Text style={styles.noAccountMessageBottom}>
+          Just press the button below and scan a valid qr code.
+        </Text>
         <Pressable
-          style={styles.ViewBusinessCard}
+          style={({ pressed }) => [
+            styles.button,
+            pressed && { backgroundColor: "#FCA311", borderColor: "#14213D" },
+          ]}
           onPress={() => {
             navigation.navigate("QRScanner", { setQRData });
           }}
         >
           <Text style={styles.buttonText}>View Business Card </Text>
         </Pressable>
+        <View style={styles.ViewBusinessCardHairline}></View>
       </View>
     </View>
   );
@@ -146,46 +191,77 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  box: {
-    marginTop: 5,
-    marginBottom: 20,
-    height: 100,
-    width: 300,
-    padding: 20,
-  },
+
   input: {
     borderWidth: 1,
-    borderColor: "#252422",
+    borderColor: "#14213D",
     borderStyle: "solid",
     padding: 8,
     margin: 10,
+    marginLeft: 30,
     width: 200,
+    backgroundColor: "#E5E5E5",
   },
   button: {
-    alignItems: "center",
-    justifyContent: "center",
     paddingVertical: 20,
     paddingHorizontal: 32,
-    borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#FCA311",
-    borderColor: "#14213D",
-    borderWidth: 1.5,
+    backgroundColor: "#14213D",
   },
   buttonText: {
-    marginLeft: 0,
+    textAlign: "center",
     color: "#FFFCF2",
+    fontFamily: "PlusJakartaSans",
   },
 
   ViewBusinessCard: {
-    alignItems: "center",
-    justifyContent: "center",
     paddingVertical: 20,
     paddingHorizontal: 32,
-    borderRadius: 4,
     elevation: 3,
-    backgroundColor: "#FCA311",
-    borderColor: "#14213D",
-    borderWidth: 1.5,
+    backgroundColor: "#14213D",
+  },
+  loginText: {
+    marginLeft: 30,
+    color: "#14213D",
+    fontFamily: "PlusJakartaSans",
+  },
+  noAccountMessage: {
+    marginLeft: 0,
+    color: "#14213D",
+    fontSize: 30,
+    width: 140,
+    fontFamily: "PlusJakartaSans",
+  },
+  noAccountMessageBottom: {
+    marginLeft: 0,
+    marginBottom: 10,
+    color: "#14213D",
+    fontFamily: "PlusJakartaSans",
+  },
+  ViewBusinessCardHairline: {
+    borderRadiusBottom: 100,
+    backgroundColor: "#14213D",
+    height: 4,
+    width: 260,
+    marginBottom: 40,
+  },
+  CreateAccountAndLoginHairline: {
+    borderRadiusBottom: 100,
+    backgroundColor: "#14213D",
+    height: 4,
+    width: 260,
+    marginBottom: 0,
+  },
+  SubmitHairline: {
+    borderRadiusBottom: 100,
+    backgroundColor: "#14213D",
+    height: 4,
+    width: 260,
+    marginBottom: 15,
+  },
+  BusinessCardContainer: {
+    marginTop: 30,
+    width: 260,
+    height: 260,
   },
 });

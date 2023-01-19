@@ -1,4 +1,4 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, StyleSheet, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import QRInfo from "./QRInfo";
 import ArCardView from "./ArCardView";
@@ -61,13 +61,16 @@ export default function QRGenerator({ currentUser, navigation }) {
           {userCards && (
             <>
               {userCards.map((e, key) => (
-                <QRInfo
-                  card={e}
-                  key={key}
-                  currentUser={currentUser}
-                  navigation={navigation}
-                  handleOpenAR={handleOpenAR}
-                />
+                <>
+                  <QRInfo
+                    card={e}
+                    key={key}
+                    currentUser={currentUser}
+                    navigation={navigation}
+                    handleOpenAR={handleOpenAR}
+                  />
+                  <View style={styles.hairline}></View>
+                </>
               ))}
             </>
           )}
@@ -76,3 +79,12 @@ export default function QRGenerator({ currentUser, navigation }) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  hairline: {
+    backgroundColor: "#FCA311",
+    height: 4,
+    width: 2400,
+    marginBottom: 15,
+  },
+});

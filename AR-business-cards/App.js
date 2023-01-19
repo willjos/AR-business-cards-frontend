@@ -11,10 +11,13 @@ import CreateCard from "./components/CreateCard";
 import EditCard from "./components/EditCard";
 import ArCardView from "./components/ArCardView";
 import CardCollection from "./components/CardCollection";
-
+import { useFonts } from "expo-font";
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [qrData, setQRData] = useState("QR Data");
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans: require("./assets/Fonts/PlusJakartaSans.ttf"),
+  });
 
   const handleUserStorage = async (user) => {
     try {
@@ -45,6 +48,10 @@ export default function App() {
     getUserFromStorage();
   }, []);
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <>
       {currentUser ? (
@@ -56,7 +63,8 @@ export default function App() {
               },
               headerTintColor: "#fff",
               headerTitleStyle: {
-                fontWeight: "bold",
+                fontFamily: "PlusJakartaSans",
+                fontWeight: "200",
               },
             }}
           >
@@ -110,7 +118,8 @@ export default function App() {
               },
               headerTintColor: "#fff",
               headerTitleStyle: {
-                fontWeight: "bold",
+                fontFamily: "PlusJakartaSans",
+                fontWeight: "200",
               },
             }}
           >

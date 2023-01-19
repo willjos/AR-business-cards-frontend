@@ -1077,6 +1077,11 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@expo-google-fonts/martel@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/martel/-/martel-0.2.2.tgz#b10cff92283d158765f8c7264b4814527d936302"
+  integrity sha512-6oot5sLDt9Q6MQrOcgaD/5Be15xoWxi/o/CEMqd5j3Q6ku1X2UDW6rwo5Ogy+Zz03MOSQM0WemKrE69m6OyC0Q==
+
 "@expo/bunyan@4.0.0", "@expo/bunyan@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@expo/bunyan/-/bunyan-4.0.0.tgz"
@@ -4481,6 +4486,13 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+expo-app-loading@~2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/expo-app-loading/-/expo-app-loading-2.1.1.tgz#5abde2e219ed4a6dcf8a9858a7317792fd9a18d2"
+  integrity sha512-b3VNkPuFaI9J847HSpjI4uiuyE4+IWyAIPT9uzbkS7QFknL99DMoihtgzeWzKaJKSAmbYc3ph2Vl9skJAkVYUg==
+  dependencies:
+    expo-splash-screen "~0.17.0"
+
 expo-application@~5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/expo-application/-/expo-application-5.0.1.tgz"
@@ -4572,7 +4584,7 @@ expo-pwa@0.0.124:
     commander "2.20.0"
     update-check "1.5.3"
 
-expo-splash-screen@~0.17.5:
+expo-splash-screen@~0.17.0, expo-splash-screen@~0.17.5:
   version "0.17.5"
   resolved "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.17.5.tgz"
   integrity sha512-ejSO78hwHXz8T9u8kh8t4r6CR4h70iBvA65gX8GK+dYxZl6/IANPbIb2VnUpND9vqfW+JnkDw+ZFst+gDnkpcQ==
