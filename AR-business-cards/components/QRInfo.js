@@ -9,9 +9,11 @@ export default function QRInfo({ card, navigation, handleOpenAR }) {
   const handleEditPress = () => {
     navigation.navigate("EditCard", { card });
   };
+
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <View style={styles.QRContainer}>
       <View style={styles.qrCode}>
