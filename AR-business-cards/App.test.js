@@ -23,4 +23,22 @@ describe("User Login Screen", () => {
     const viewCardButton = screen.getByTestId("View-Card-Button");
     expect(viewCardButton).toBeOnTheScreen();
   });
+
+  test("Login Form appears after pressing Log In Button", () => {
+    //When styling is pushed to main, change buttons to pressables
+    render(<UserLoginPage />);
+
+    const loginButton = screen.getByTestId("Login-Button");
+    expect(loginButton).toBeOnTheScreen();
+
+    fireEvent(loginButton, "press");
+
+    const usernameInput = screen.getByTestId("Username-Input");
+    const passwordInput = screen.getByTestId("Password-Input");
+    const loginSubmitButton = screen.getByTestId("Login-Submit-Button");
+
+    expect(usernameInput).toBeOnTheScreen();
+    expect(passwordInput).toBeOnTheScreen();
+    expect(loginSubmitButton).toBeOnTheScreen();
+  });
 });
