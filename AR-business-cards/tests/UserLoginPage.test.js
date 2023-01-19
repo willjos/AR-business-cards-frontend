@@ -1,8 +1,37 @@
 import * as React from "react";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 import UserLoginPage from "../components/UserLoginPage";
+import App from "../App";
 
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
+
+const items = {};
+jest.mock("react-native", () => ({
+  AsyncStorage: {
+    setItem: jest.fn((item, value) => {
+      return new Promise((resolve, reject) => {
+        items[item] = value;
+        resolve(value);
+      });
+    }),
+    getItem: jest.fn((item, value) => {
+      return new Promise((resolve, reject) => {
+        resolve(items[item]);
+      });
+    }),
+    removeItem: jest.fn((item) => {
+      return new Promise((resolve, reject) => {
+        resolve(delete items[item]);
+      });
+    }),
+  },
+}));
+
+jest.mock("react-native", () => ({
+  StyleSheet: {
+    create: jest.fn(),
+  },
+}));
 
 describe("User Login Screen", () => {
   test("Log In Button appears", () => {
@@ -60,5 +89,12 @@ describe("User Login Screen", () => {
     expect(createUsernameInput).toBeOnTheScreen();
     expect(createPasswordInput).toBeOnTheScreen();
     expect(createAccntSubmitButton).toBeOnTheScreen();
+  });
+
+  test("Navigate to QR Scanner upon clicking View Business Card", () => {
+    render(<App />);
+
+    const viewCardButton = screen.getByTestId("View-Card-Button");
+    expect(viewCardButton).toBeOnTheScreen();
   });
 });
