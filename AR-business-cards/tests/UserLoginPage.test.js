@@ -31,6 +31,18 @@ jest.mock("react-native", () => ({
   StyleSheet: {
     create: jest.fn(),
   },
+  Platform: {
+    select: jest.fn(),
+  },
+  UIManager: {
+    getViewManagerConfig: jest.fn(),
+  },
+  Animated: {
+    createAnimatedComponent: jest.fn(),
+  },
+  I18nManager: {
+    getConstants: jest.fn({ isRTL: 1 }),
+  },
 }));
 
 describe("User Login Screen", () => {
