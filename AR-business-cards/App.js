@@ -11,10 +11,13 @@ import CreateCard from "./components/CreateCard";
 import EditCard from "./components/EditCard";
 import ArCardView from "./components/ArCardView";
 import CardCollection from "./components/CardCollection";
-
+import { useFonts } from "expo-font";
 export default function App() {
   const [currentUser, setCurrentUser] = useState("");
   const [qrData, setQRData] = useState("QR Data");
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans: require("./assets/Fonts/PlusJakartaSans.ttf"),
+  });
 
   const handleUserStorage = async (user) => {
     try {
@@ -45,11 +48,26 @@ export default function App() {
     getUserFromStorage();
   }, []);
 
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <>
       {currentUser ? (
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#FCA311",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontFamily: "PlusJakartaSans",
+                fontWeight: "200",
+              },
+            }}
+          >
             <Stack.Screen
               name="Home"
               options={{ title: `Hello ${currentUser}` }}
@@ -93,10 +111,23 @@ export default function App() {
         </NavigationContainer>
       ) : (
         <NavigationContainer>
-          <LoginStack.Navigator>
+          <LoginStack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#FCA311",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontFamily: "PlusJakartaSans",
+                fontWeight: "200",
+              },
+            }}
+          >
             <LoginStack.Screen
               name="Login"
-              options={{ title: `Let's see Paul Allen's cARd.` }}
+              options={{
+                title: `Let's see Paul Allen's cARd.`,
+              }}
             >
               {(props) => (
                 <UserLoginPage

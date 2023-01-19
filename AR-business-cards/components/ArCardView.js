@@ -10,7 +10,6 @@ import {
   ViroARImageMarker,
   ViroSpinner,
 } from "@viro-community/react-viro";
-
 export default ({ cardDetails }) => {
   const [markerFound, setMarkerFound] = useState(false);
   function BusinessCardScene() {
@@ -47,7 +46,7 @@ export default ({ cardDetails }) => {
             rotation={[-90, 0, 0]}
             height={2.1}
             width={3.1}
-            backgroundColor={"#FF7000"}
+            backgroundColor={"#000000"}
             style={styles.f1}
           ></ViroFlexView>
           <ViroFlexView
@@ -97,7 +96,7 @@ export default ({ cardDetails }) => {
   );
 };
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   f1: { flex: 1, justifyContent: "space-evenly" },
   CardTextStyle: {
     fontSize: 30,

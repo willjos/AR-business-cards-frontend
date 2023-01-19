@@ -2,12 +2,14 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import React, { useState, useEffect } from "react";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import ArCardView from "./ArCardView";
-
+import { useFonts } from "expo-font";
 export default function QRScanner({ currentUser, navigation }) {
   const [scanned, setScanned] = useState(false);
   const [openAR, setOpenAR] = useState(false);
   const [cardDetails, setCardDetails] = useState(undefined);
-
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans: require("../assets/Fonts/PlusJakartaSans.ttf"),
+  });
   const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     const response = await fetch(
@@ -22,6 +24,9 @@ export default function QRScanner({ currentUser, navigation }) {
       const responseJSON = await response.json();
       await setCardDetails(responseJSON[0]);
       setOpenAR(true);
+      navigation.setOptions({
+        title: "Ar View",
+      });
     } else {
       alert(
         `Invalid QR: The card does not exist or the QR code scanned is not valid. (for qr data: ${data})`
@@ -29,25 +34,9 @@ export default function QRScanner({ currentUser, navigation }) {
     }
   };
 
-  const handleScanPress = () => {
-    setScanned(false);
-  };
-
-  useEffect(() => {
-    console.log("scanned" + scanned);
-  }, [scanned]);
-
-  useEffect(() => {
-    if (openAR === true) {
-      navigation.setOptions({
-        title: "Ar View",
-      });
-    } else if (openAR === false) {
-      navigation.setOptions({
-        title: "Scan a QR code",
-      });
-    }
-  }, [openAR]);
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <>
@@ -55,21 +44,17 @@ export default function QRScanner({ currentUser, navigation }) {
         <ArCardView cardDetails={cardDetails} />
       ) : (
         <View style={styles.container}>
+          {scanned ? (
+            <Text style={styles.text}>Scan Successful.</Text>
+          ) : (
+            <Text style={styles.text}>Scan a Valid QR code.</Text>
+          )}
           <View style={styles.barcodeBox}>
             <BarCodeScanner
               onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
               style={{ height: 400, width: 400 }}
             />
           </View>
-          {scanned && (
-            <Button
-              title={"Scan again"}
-              onPress={() => {
-                handleScanPress();
-              }}
-              color="#bef4e7"
-            />
-          )}
         </View>
       )}
     </>
@@ -82,12 +67,20 @@ const styles = StyleSheet.create({
     fontFamily: "Arial",
     fontSize: 30,
     color: "#ffffff",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
     textAlignVertical: "center",
     textAlign: "center",
   },
+  text: {
+    marginTop: 80,
+    marginLeft: 10,
+    marginBottom: 30,
+    color: "#14213D",
+    fontSize: 20,
 
+    fontFamily: "PlusJakartaSans",
+  },
   barcodeBox: {
     alignItems: "center",
     justifyContent: "center",
