@@ -54,6 +54,7 @@ export default function UserLoginPage({
           <Button
             style={styles.text}
             title="Log In"
+            testID="Login-Button"
             onPress={handleLoginPress}
           />
         </View>
