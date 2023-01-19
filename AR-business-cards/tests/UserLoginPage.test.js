@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render, screen, fireEvent } from "@testing-library/react-native";
-import UserLoginPage from "./components/UserLoginPage";
+import UserLoginPage from "../components/UserLoginPage";
 
 describe("User Login Screen", () => {
   test("Log In Button appears", () => {
