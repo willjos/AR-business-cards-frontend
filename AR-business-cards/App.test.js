@@ -11,7 +11,8 @@ describe("User Login Screen", () => {
     //When styling is pushed to main, change buttons to pressables
     render(<UserLoginPage />);
 
-    const loginButton = screen.findByTestId("Login-Button");
+    const loginButton = screen.getByTestId("Login-Button");
+    // console.log(loginButton);
     expect(loginButton).toBeOnTheScreen();
   });
 });
