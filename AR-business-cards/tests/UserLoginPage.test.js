@@ -2,6 +2,8 @@ import * as React from "react";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 import UserLoginPage from "../components/UserLoginPage";
 import App from "../App";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 
