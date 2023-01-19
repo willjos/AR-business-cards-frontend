@@ -5,13 +5,12 @@ export default function QRInfo({ card, navigation, handleOpenAR }) {
   const handleEditPress = () => {
     navigation.navigate("EditCard", { card });
   };
-  console.log(card);
+
   return (
     <View style={styles.QRContainer}>
       <QRCode value={card.id.toString()} />
       <View style={styles.infoContainer}>
         <Text>{card.title}</Text>
-        <Text>{`Scanned ${card.count} times`}</Text>
         <Button title="Edit" onPress={handleEditPress} />
         <Button
           title="View"
