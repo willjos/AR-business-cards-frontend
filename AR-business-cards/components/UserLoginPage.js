@@ -103,6 +103,7 @@ export default function UserLoginPage({
           <TextInput
             style={styles.input}
             placeholder="Username"
+            testID="Create-Username-Input"
             onChangeText={(text) =>
               handleInputChange(setUsernameCreateAccountInput, text)
             }
@@ -111,12 +112,14 @@ export default function UserLoginPage({
             secureTextEntry={true}
             style={styles.input}
             placeholder="Password"
+            testID="Create-Password-Input"
             onChangeText={(text) =>
               handleInputChange(setPasswordCreateAccountInput, text)
             }
           />
           <Button
             title="Submit"
+            testID="Create-Account-Submit"
             onPress={() =>
               handleSubmitPress(
                 "register-user",

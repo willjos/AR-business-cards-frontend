@@ -41,4 +41,22 @@ describe("User Login Screen", () => {
     expect(passwordInput).toBeOnTheScreen();
     expect(loginSubmitButton).toBeOnTheScreen();
   });
+
+  test("Create Account Form appears after pressing Create Account Button", () => {
+    //When styling is pushed to main, change buttons to pressables
+    render(<UserLoginPage />);
+
+    const createAccntButton = screen.getByTestId("Create-Account-Button");
+    expect(createAccntButton).toBeOnTheScreen();
+
+    fireEvent(createAccntButton, "press");
+
+    const createUsernameInput = screen.getByTestId("Create-Username-Input");
+    const createPasswordInput = screen.getByTestId("Create-Password-Input");
+    const createAccntSubmitButton = screen.getByTestId("Create-Account-Submit");
+
+    expect(createUsernameInput).toBeOnTheScreen();
+    expect(createPasswordInput).toBeOnTheScreen();
+    expect(createAccntSubmitButton).toBeOnTheScreen();
+  });
 });
