@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
+import * as React from "react";
 export default function UserLoginPage({
   handleUserStorage,
   navigation,
@@ -68,6 +69,7 @@ export default function UserLoginPage({
         {loginButtonRender ? (
           <View>
             <Pressable
+              testID="Login-Button"
               onPress={handleLoginPress}
               style={({ pressed }) => [
                 styles.button,
@@ -84,6 +86,7 @@ export default function UserLoginPage({
               Log in to your existing account
             </Text>
             <TextInput
+              testID="Username-Input"
               style={styles.input}
               placeholder="Username"
               onChangeText={(text) =>
@@ -91,6 +94,7 @@ export default function UserLoginPage({
               }
             />
             <TextInput
+              testID="Password-Input"
               secureTextEntry={true}
               style={styles.input}
               placeholder="Password"
@@ -99,6 +103,7 @@ export default function UserLoginPage({
               }
             />
             <Pressable
+              testID="Login-Submit-Button"
               style={({ pressed }) => [
                 styles.button,
                 pressed && { backgroundColor: "#FCA311" },
@@ -119,6 +124,7 @@ export default function UserLoginPage({
         {createAccountButtonRender ? (
           <View>
             <Pressable
+              testID="Create-Account-Button"
               style={({ pressed }) => [
                 styles.button,
                 pressed && { backgroundColor: "#FCA311" },
@@ -133,6 +139,7 @@ export default function UserLoginPage({
           <View>
             <Text style={styles.loginText}>Register an account with us</Text>
             <TextInput
+              testID="Create-Username-Input"
               style={styles.input}
               placeholder="Username"
               onChangeText={(text) =>
@@ -140,6 +147,7 @@ export default function UserLoginPage({
               }
             />
             <TextInput
+              testID="Create-Password-Input"
               secureTextEntry={true}
               style={styles.input}
               placeholder="Password"
@@ -148,6 +156,7 @@ export default function UserLoginPage({
               }
             />
             <Pressable
+              testID="Create-Account-Submit"
               style={({ pressed }) => [
                 styles.button,
                 pressed && { backgroundColor: "#FCA311" },
@@ -171,6 +180,7 @@ export default function UserLoginPage({
             Just press the button below and scan a valid qr code.
           </Text>
           <Pressable
+            testID="View-Card-Button"
             style={({ pressed }) => [
               styles.button,
               pressed && { backgroundColor: "#FCA311", borderColor: "#14213D" },

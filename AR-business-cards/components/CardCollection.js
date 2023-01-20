@@ -10,7 +10,6 @@ export default function CardCollection({ currentUser, navigation }) {
   const handleOpenAR = (data) => {
     setCurrentCardDetails(data);
     setOpenAr(true);
-    // navigation.navigate("ArCardView", (cardDetails = { cardDetails }));
   };
 
   const getUserCollection = async () => {
